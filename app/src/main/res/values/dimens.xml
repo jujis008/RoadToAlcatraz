@@ -1,0 +1,35 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="gap_xsmall">2dp</dimen>
+    <dimen name="gap_xsmall_negative">-2dp</dimen>
+    <dimen name="gap_small">4dp</dimen>
+    <dimen name="gap_small_negative">-4dp</dimen>
+    <dimen name="gap_smedium">6dp</dimen>
+    <dimen name="gap_medium">8dp</dimen>
+    <dimen name="gap_medium_negative">-8dp</dimen>
+    <dimen name="gap_mhigh">12dp</dimen>
+    <dimen name="gap_mhigh_negative">-12dp</dimen>
+    <dimen name="gap_high">16dp</dimen>
+    <dimen name="gap_mxhigh">26dp</dimen>
+    <dimen name="gap_xhigh">32dp</dimen>
+    <dimen name="gap_xxhigh">64dp</dimen>
+    <dimen name="gap_xxxhigh">128dp</dimen>
+
+    <dimen name="font_size_huge">20sp</dimen>
+    <dimen name="font_size_large">18sp</dimen>
+    <dimen name="font_size_title">16sp</dimen>
+    <dimen name="font_size_normal">14sp</dimen>
+    <dimen name="font_size_small">12sp</dimen>
+
+    <!-- Item messages -->
+
+    <dimen name="messages_min_height">72dp</dimen>
+
+
+</resources>

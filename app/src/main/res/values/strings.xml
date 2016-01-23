@@ -1,0 +1,43 @@
+<resources>
+
+    <!-- Global -->
+
+    <string name="app_name">Road to Alcatraz</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="shared_preference_new_game_created">shared_preference_new_game_created</string>
+
+
+    <!-- Welcome -->
+    <string name="welcome_title">Welcome</string>
+    <string name="welcome_wait">Creating new game... just wait a few seconds!</string>
+    <string name="welcome_first_message_title">Read me!</string>
+    <string name="welcome_first_message_body">Hi XXXNAMEXXX! This kind of messages will give you important information about the game. You should read them ;)</string>
+    <string name="welcome_quest_message_title">Complete your quests!</string>
+    <string name="welcome_quest_message_body">There is a quests section. There you will find objectives that will guide you through the game. Once completed, you will win some nice rewards. Go check quests section!</string>
+
+
+    <!-- Feed -->
+
+    <string name="feed_title">Feed</string>
+
+    <!-- Calendar -->
+
+    <string name="calendar_title">Calendar</string>
+
+    <!-- Tournament -->
+
+    <string name="tournament_title">Tournament</string>
+
+    <!-- Training -->
+
+    <string name="training_title">Training</string>
+    <string name="training_offensive_title">Offensive</string>
+    <string name="training_defensive_title">Defensive</string>
+    <string name="training_physical_title">Physical</string>
+    <string name="training_mental_title">Mental</string>
+
+
+</resources>

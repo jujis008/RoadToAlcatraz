@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#212121</color>
+    <color name="colorPrimaryDark">#212121</color>
+    <color name="colorAccent">#F57C00</color>
+
+
+    <color name="colorPrimaryDark1000">#000000</color>
+    <color name="colorPrimaryDark900">#212121</color>
+    <color name="colorPrimaryDark800">#424242</color>
+    <color name="colorPrimaryDark700">#616161</color>
+    <color name="colorPrimaryDark600">#757575</color>
+    <color name="colorPrimaryDark500">#9E9E9E</color>
+
+    <color name="colorAccent700">#F57C00</color>
+    <color name="colorAccent400">#FFA726</color>
+    <color name="colorAccent100">#FFE0B2</color>
+
+
+
+
+    <!-- Crouton notifications -->
+    <color name="notification_text_info">@android:color/white</color>
+    <color name="notification_background_info">#2d3133</color>
+    <color name="notification_text_warning">#2d3133</color>
+    <color name="notification_background_warning">#e1a900</color>
+    <color name="notification_text_error">@android:color/white</color>
+    <color name="notification_background_error">#dd2524</color>
+    <color name="notification_text_goodnews">@android:color/white</color>
+    <color name="notification_background_goodnews">#00a550</color>
+
+
+</resources>
