@@ -15,7 +15,7 @@ import javax.inject.Inject;
  */
 public class TrainController {
 
-    private static final String TAG = "TrainController";
+    private static final String TAG = "StrategyController";
     private View view;
 
     public void setView(View view) {

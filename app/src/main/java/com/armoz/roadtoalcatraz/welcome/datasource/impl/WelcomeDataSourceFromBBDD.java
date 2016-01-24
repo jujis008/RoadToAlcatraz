@@ -7,6 +7,7 @@ import com.armoz.roadtoalcatraz.R;
 import com.armoz.roadtoalcatraz.base.domain.model.GameModel;
 import com.armoz.roadtoalcatraz.base.domain.model.MessageModel;
 import com.armoz.roadtoalcatraz.base.domain.model.PlayerModel;
+import com.armoz.roadtoalcatraz.base.domain.model.StrategyModel;
 import com.armoz.roadtoalcatraz.base.domain.model.TournamentModel;
 import com.armoz.roadtoalcatraz.welcome.datasource.WelcomeDataSource;
 import com.j256.ormlite.dao.Dao;
@@ -33,17 +34,20 @@ public class WelcomeDataSourceFromBBDD implements WelcomeDataSource {
     private final Dao<MessageModel, String> daoMessages;
     private final Dao<GameModel, String> daoGames;
     private final Dao<PlayerModel, String> daoPlayers;
+    private final Dao<StrategyModel, String> daoStrategy;
+
 
     private Context context;
 
     @Inject
     public WelcomeDataSourceFromBBDD(Context context, Dao<MessageModel, String> daoMessages,
                                      Dao<TournamentModel, String> daoTournament, Dao<GameModel, String> daoGames,
-                                     Dao<PlayerModel, String> daoPlayers) {
+                                     Dao<PlayerModel, String> daoPlayers, Dao<StrategyModel, String> daoStrategy) {
         this.daoMessages = daoMessages;
         this.daoTournament = daoTournament;
         this.daoGames = daoGames;
         this.daoPlayers = daoPlayers;
+        this.daoStrategy = daoStrategy;
         this.context = context;
     }
 
@@ -60,8 +64,9 @@ public class WelcomeDataSourceFromBBDD implements WelcomeDataSource {
 
         //Crear rewards
 
-        //Crear myPLayer + my strategy + my training
-        createMyPlayer();
+        //Crear myPLayer + my strategy
+        PlayerModel playerModel = createMyPlayer();
+        createMyStrategy(playerModel);
 
         //Crear tornejos temporada
         createSeasonTournaments();
@@ -75,7 +80,30 @@ public class WelcomeDataSourceFromBBDD implements WelcomeDataSource {
 
     }
 
-    private void createMyPlayer() throws SQLException{
+    private void createMyStrategy(PlayerModel playerModel) throws SQLException {
+
+        StrategyModel strategy = new StrategyModel();
+        strategy.setLessToMorePhysical(50);
+        strategy.setLessToMoreTrashtalking(50);
+
+        strategy.setLessToMoreExtActions(50);
+        strategy.setPenetrationVsPostmove(50);
+        strategy.setQuickVsElaboratedShoot(50);
+        strategy.setFightOffensiveRebounding(50);
+
+        strategy.setLessToMoreSteal(50);
+        strategy.setLessToMoreSpacing(50);
+        strategy.setLessToMoreBlocking(50);
+        strategy.setFightDefensiveRebounding(50);
+
+        daoStrategy.create(strategy);
+
+        playerModel.setStrategy(strategy.getId());
+        daoPlayers.update(playerModel);
+
+    }
+
+    private PlayerModel createMyPlayer() throws SQLException{
 
         PlayerModel player = new PlayerModel();
         player.setUserPlayer(true);
@@ -113,6 +141,8 @@ public class WelcomeDataSourceFromBBDD implements WelcomeDataSource {
         player.setFriendly(0);
 
         daoPlayers.create(player);
+
+        return player;
     }
 
     private void createSeasonTournaments() throws SQLException {

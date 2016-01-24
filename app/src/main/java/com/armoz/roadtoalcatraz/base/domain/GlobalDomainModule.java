@@ -10,6 +10,7 @@ import com.armoz.roadtoalcatraz.base.domain.interactor.impl.MainThreadHandler;
 import com.armoz.roadtoalcatraz.base.domain.model.GameModel;
 import com.armoz.roadtoalcatraz.base.domain.model.MessageModel;
 import com.armoz.roadtoalcatraz.base.domain.model.PlayerModel;
+import com.armoz.roadtoalcatraz.base.domain.model.StrategyModel;
 import com.armoz.roadtoalcatraz.base.domain.model.TournamentModel;
 import com.j256.ormlite.dao.Dao;
 import com.path.android.jobqueue.JobManager;
@@ -117,6 +118,16 @@ public class GlobalDomainModule {
     public Dao<PlayerModel, String> provideDaoPlayers(DatabaseHelper dbHelper) {
         try {
             return dbHelper.getPlayersDao();
+        } catch (SQLException e) {
+            Log.e(LOGTAG, "error creating dao", e);
+        }
+        return null;
+    }
+
+    @Provides
+    public Dao<StrategyModel, String> provideDaoStrategy(DatabaseHelper dbHelper) {
+        try {
+            return dbHelper.getStrategyDao();
         } catch (SQLException e) {
             Log.e(LOGTAG, "error creating dao", e);
         }

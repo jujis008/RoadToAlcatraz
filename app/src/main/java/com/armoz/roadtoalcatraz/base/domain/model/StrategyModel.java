@@ -7,7 +7,23 @@ import com.j256.ormlite.field.DatabaseField;
  */
 public class StrategyModel {
 
-    @DatabaseField(generatedId = true, columnName = "ID")
+    public static final String ID = "ID";
+
+    public static final String LESS_TO_MORE_PHYSICAL = "LESS_TO_MORE_PHYSICAL";
+    public static final String LESS_TO_MORE_TRASHTALKING = "LESS_TO_MORE_TRASHTALKING";
+
+    public static final String LESS_TO_MORE_EXT_ACTION = "LESS_TO_MORE_EXT_ACTION";
+    public static final String PENETRATION_VS_POSTMOVE = "PENETRATION_VS_POSTMOVE";
+    public static final String QUICK_VS_ELABORATED_SHOT = "QUICK_VS_ELABORATED_SHOT";
+    public static final String FIGHT_OFFENSIVE_REBOUNDING = "FIGHT_OFFENSIVE_REBOUNDING";
+
+    public static final String LESS_TO_MORE_STEAL = "LESS_TO_MORE_STEAL";
+    public static final String LESS_TO_MORE_SPACING = "LESS_TO_MORE_SPACING";
+    public static final String LESS_TO_MORE_BLOCKING = "LESS_TO_MORE_BLOCKING";
+    public static final String FIGHT_DEFENSIVE_REBOUNDING = "FIGHT_DEFENSIVE_REBOUNDING";
+
+
+    @DatabaseField(generatedId = true, columnName = ID)
     private long id;
 
     // All fields must have a number between 0 and 100
@@ -16,50 +32,50 @@ public class StrategyModel {
     //General strategy
 
     //0 -> less physical, 100-> more physical
-    @DatabaseField(columnName = "PHYSICAL")
-    private int physical;
+    @DatabaseField(columnName = LESS_TO_MORE_PHYSICAL)
+    private int lessToMorePhysical;
 
     //0 -> never, 100-> always
-    @DatabaseField(columnName = "TRASHTALKING")
-    private int trashtalking;
+    @DatabaseField(columnName = LESS_TO_MORE_TRASHTALKING)
+    private int lessToMoreTrashtalking;
 
 
     //Ofensive strategy
 
     //0 -> int, 100-> ext
-    @DatabaseField(columnName = "ACTIONS")
-    private int actions;
+    @DatabaseField(columnName = LESS_TO_MORE_EXT_ACTION)
+    private int lessToMoreExtActions;
 
     //0 -> penetration, 100 -> post moves
-    @DatabaseField(columnName = "INT_ACTIONS")
-    private int int_actions;
+    @DatabaseField(columnName = PENETRATION_VS_POSTMOVE)
+    private int penetrationVsPostmove;
 
     //0 -> quick shoot, 100 -> try to get a better shoot
-    @DatabaseField(columnName = "EXT_ACTIONS")
-    private int ext_actions;
+    @DatabaseField(columnName = QUICK_VS_ELABORATED_SHOT)
+    private int quickVsElaboratedShoot;
 
     //0 -> never, 100 -> always
-    @DatabaseField(columnName = "OFF_REBOUNDING")
-    private int off_rebounding;
+    @DatabaseField(columnName = FIGHT_OFFENSIVE_REBOUNDING)
+    private int fightOffensiveRebounding;
 
 
     //Defensive Strategy
 
     //0 -> never, 100-> always
-    @DatabaseField(columnName = "STEALING")
-    private int stealing;
+    @DatabaseField(columnName = LESS_TO_MORE_STEAL)
+    private int lessToMoreSteal;
 
     //0 -> dont let ext shoot, 100-> always let ext shoot
-    @DatabaseField(columnName = "SPACEING")
-    private int spaceing;
+    @DatabaseField(columnName = LESS_TO_MORE_SPACING)
+    private int lessToMoreSpacing;
 
     //0 -> never, 100-> always
-    @DatabaseField(columnName = "BLOCKING")
-    private int blocking;
+    @DatabaseField(columnName = LESS_TO_MORE_BLOCKING)
+    private int lessToMoreBlocking;
 
     //0 -> never, 100 -> always
-    @DatabaseField(columnName = "DEF_REBOUNDING")
-    private int def_rebounding;
+    @DatabaseField(columnName = FIGHT_DEFENSIVE_REBOUNDING)
+    private int fightDefensiveRebounding;
 
 
 
@@ -71,83 +87,83 @@ public class StrategyModel {
         this.id = id;
     }
 
-    public int getPhysical() {
-        return physical;
+    public int getLessToMorePhysical() {
+        return lessToMorePhysical;
     }
 
-    public void setPhysical(int physical) {
-        this.physical = physical;
+    public void setLessToMorePhysical(int lessToMorePhysical) {
+        this.lessToMorePhysical = lessToMorePhysical;
     }
 
-    public int getTrashtalking() {
-        return trashtalking;
+    public int getLessToMoreTrashtalking() {
+        return lessToMoreTrashtalking;
     }
 
-    public void setTrashtalking(int trashtalking) {
-        this.trashtalking = trashtalking;
+    public void setLessToMoreTrashtalking(int lessToMoreTrashtalking) {
+        this.lessToMoreTrashtalking = lessToMoreTrashtalking;
     }
 
-    public int getActions() {
-        return actions;
+    public int getLessToMoreExtActions() {
+        return lessToMoreExtActions;
     }
 
-    public void setActions(int actions) {
-        this.actions = actions;
+    public void setLessToMoreExtActions(int lessToMoreExtActions) {
+        this.lessToMoreExtActions = lessToMoreExtActions;
     }
 
-    public int getInt_actions() {
-        return int_actions;
+    public int getPenetrationVsPostmove() {
+        return penetrationVsPostmove;
     }
 
-    public void setInt_actions(int int_actions) {
-        this.int_actions = int_actions;
+    public void setPenetrationVsPostmove(int penetrationVsPostmove) {
+        this.penetrationVsPostmove = penetrationVsPostmove;
     }
 
-    public int getExt_actions() {
-        return ext_actions;
+    public int getQuickVsElaboratedShoot() {
+        return quickVsElaboratedShoot;
     }
 
-    public void setExt_actions(int ext_actions) {
-        this.ext_actions = ext_actions;
+    public void setQuickVsElaboratedShoot(int quickVsElaboratedShoot) {
+        this.quickVsElaboratedShoot = quickVsElaboratedShoot;
     }
 
-    public int getOff_rebounding() {
-        return off_rebounding;
+    public int getFightOffensiveRebounding() {
+        return fightOffensiveRebounding;
     }
 
-    public void setOff_rebounding(int off_rebounding) {
-        this.off_rebounding = off_rebounding;
+    public void setFightOffensiveRebounding(int fightOffensiveRebounding) {
+        this.fightOffensiveRebounding = fightOffensiveRebounding;
     }
 
-    public int getStealing() {
-        return stealing;
+    public int getLessToMoreSteal() {
+        return lessToMoreSteal;
     }
 
-    public void setStealing(int stealing) {
-        this.stealing = stealing;
+    public void setLessToMoreSteal(int lessToMoreSteal) {
+        this.lessToMoreSteal = lessToMoreSteal;
     }
 
-    public int getSpaceing() {
-        return spaceing;
+    public int getLessToMoreSpacing() {
+        return lessToMoreSpacing;
     }
 
-    public void setSpaceing(int spaceing) {
-        this.spaceing = spaceing;
+    public void setLessToMoreSpacing(int lessToMoreSpacing) {
+        this.lessToMoreSpacing = lessToMoreSpacing;
     }
 
-    public int getBlocking() {
-        return blocking;
+    public int getLessToMoreBlocking() {
+        return lessToMoreBlocking;
     }
 
-    public void setBlocking(int blocking) {
-        this.blocking = blocking;
+    public void setLessToMoreBlocking(int lessToMoreBlocking) {
+        this.lessToMoreBlocking = lessToMoreBlocking;
     }
 
-    public int getDef_rebounding() {
-        return def_rebounding;
+    public int getFightDefensiveRebounding() {
+        return fightDefensiveRebounding;
     }
 
-    public void setDef_rebounding(int def_rebounding) {
-        this.def_rebounding = def_rebounding;
+    public void setFightDefensiveRebounding(int fightDefensiveRebounding) {
+        this.fightDefensiveRebounding = fightDefensiveRebounding;
     }
 }

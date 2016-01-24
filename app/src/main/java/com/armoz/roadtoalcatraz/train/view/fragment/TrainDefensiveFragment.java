@@ -26,7 +26,7 @@ import butterknife.Bind;
  */
 public class TrainDefensiveFragment extends BaseFragment implements TrainController.View {
 
-    private static final String TAG = "TrainDefensiveFragment";
+    private static final String TAG = "StrategyDefensiveFragment";
     @Inject
     TrainController controller;
 

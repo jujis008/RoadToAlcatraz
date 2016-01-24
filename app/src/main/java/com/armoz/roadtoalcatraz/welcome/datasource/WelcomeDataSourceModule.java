@@ -6,6 +6,7 @@ import com.armoz.roadtoalcatraz.base.daggerutils.ForApplication;
 import com.armoz.roadtoalcatraz.base.domain.model.GameModel;
 import com.armoz.roadtoalcatraz.base.domain.model.MessageModel;
 import com.armoz.roadtoalcatraz.base.domain.model.PlayerModel;
+import com.armoz.roadtoalcatraz.base.domain.model.StrategyModel;
 import com.armoz.roadtoalcatraz.base.domain.model.TournamentModel;
 import com.armoz.roadtoalcatraz.welcome.datasource.impl.WelcomeDataSourceFromBBDD;
 import com.j256.ormlite.dao.Dao;
@@ -25,8 +26,9 @@ public class WelcomeDataSourceModule {
             Dao<MessageModel, String> daoMessages,
             Dao<TournamentModel, String> daoTournament,
             Dao<GameModel, String> daoGames,
-            Dao<PlayerModel, String> daoPlayers) {
+            Dao<PlayerModel, String> daoPlayers,
+            Dao<StrategyModel, String> daoStrategy) {
 
-        return new WelcomeDataSourceFromBBDD(context,daoMessages,daoTournament, daoGames, daoPlayers);
+        return new WelcomeDataSourceFromBBDD(context,daoMessages,daoTournament, daoGames, daoPlayers, daoStrategy);
     }
 }

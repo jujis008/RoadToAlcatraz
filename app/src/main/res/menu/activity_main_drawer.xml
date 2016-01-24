@@ -8,8 +8,8 @@
             android:title="@string/calendar_title" />
         <item android:id="@+id/drawer_training" android:icon="@android:drawable/ic_menu_slideshow"
             android:title="@string/training_title" />
-        <item android:id="@+id/nav_manage" android:icon="@android:drawable/ic_menu_manage"
-            android:title="Tools" />
+        <item android:id="@+id/drawer_strategy" android:icon="@android:drawable/ic_menu_manage"
+            android:title="@string/strategy_title" />
     </group>
 
     <item android:title="Communicate">

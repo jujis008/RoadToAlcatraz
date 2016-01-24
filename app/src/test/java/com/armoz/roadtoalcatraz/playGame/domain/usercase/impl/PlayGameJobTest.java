@@ -64,16 +64,16 @@ public class PlayGameJobTest extends AbstractJob {
 
     private StrategyModel anyStrategy() {
         StrategyModel strategy = new StrategyModel();
-        strategy.setPhysical(50);
-        strategy.setTrashtalking(50);
-        strategy.setActions(50);
-        strategy.setInt_actions(50);
-        strategy.setExt_actions(50);
-        strategy.setOff_rebounding(50);
-        strategy.setStealing(50);
-        strategy.setSpaceing(50);
+        strategy.setLessToMorePhysical(50);
+        strategy.setLessToMoreTrashtalking(50);
+        strategy.setLessToMoreExtActions(50);
+        strategy.setPenetrationVsPostmove(50);
+        strategy.setQuickVsElaboratedShoot(50);
+        strategy.setFightOffensiveRebounding(50);
+        strategy.setLessToMoreSteal(50);
+        strategy.setLessToMoreSpacing(50);
         strategy.setBlocking(50);
-        strategy.setDef_rebounding(50);
+        strategy.setFightDefensiveRebounding(50);
 
         return strategy;
     }

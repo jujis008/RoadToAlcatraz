@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.armoz.roadtoalcatraz" >
+    package="com.armoz.roadtoalcatraz">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -12,10 +12,10 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
 
         <activity
-            android:name="com.armoz.roadtoalcatraz.welcome.view.activity.WelcomeActivity"
+            android:name=".welcome.view.activity.WelcomeActivity"
             android:label="@string/welcome_title">
             <intent-filter>
                 <type android:name="android.intent.type.MAIN" />
@@ -24,29 +24,29 @@
         </activity>
 
         <activity
-            android:name="com.armoz.roadtoalcatraz.feed.view.activity.FeedActivity"
-            android:label="@string/feed_title">
-        </activity>
+            android:name=".feed.view.activity.FeedActivity"
+            android:label="@string/feed_title"></activity>
 
         <activity
-            android:name="com.armoz.roadtoalcatraz.calendar.view.activity.CalendarActivity"
-            android:label="@string/calendar_title">
-        </activity>
+            android:name=".calendar.view.activity.CalendarActivity"
+            android:label="@string/calendar_title"></activity>
 
         <activity
-            android:name="com.armoz.roadtoalcatraz.tournament.view.activity.TournamentActivity"
-            android:label="@string/tournament_title">
-        </activity>
+            android:name=".tournament.view.activity.TournamentActivity"
+            android:label="@string/tournament_title"></activity>
 
         <activity
-            android:name="com.armoz.roadtoalcatraz.train.view.activity.TrainActivity"
-            android:label="@string/training_title">
-        </activity>
+            android:name=".train.view.activity.TrainActivity"
+            android:label="@string/training_title"></activity>
+
+        <activity
+            android:name=".strategy.view.activity.StrategyActivity"
+            android:label="@string/training_title"></activity>
 
         <service
             android:name=".train.view.TrainJobService"
-            android:permission="android.permission.BIND_JOB_SERVICE"
-            android:exported="true"/>
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <meta-data
             android:name="io.fabric.ApiKey"

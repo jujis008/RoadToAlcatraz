@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import com.armoz.roadtoalcatraz.R;
 import com.armoz.roadtoalcatraz.calendar.view.activity.CalendarActivity;
 import com.armoz.roadtoalcatraz.feed.view.activity.FeedActivity;
+import com.armoz.roadtoalcatraz.strategy.view.activity.StrategyActivity;
 import com.armoz.roadtoalcatraz.train.view.activity.TrainActivity;
 
 public abstract class BaseDrawerActivity extends BaseToolbarActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -41,7 +42,6 @@ public abstract class BaseDrawerActivity extends BaseToolbarActivity implements 
         }
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -56,8 +56,9 @@ public abstract class BaseDrawerActivity extends BaseToolbarActivity implements 
         } else if (id == R.id.drawer_training) {
             Intent intent = TrainActivity.buildIntent(this);
             startActivity(intent);
-        } else if (id == R.id.nav_manage) {
-
+        } else if (id == R.id.drawer_strategy) {
+            Intent intent = StrategyActivity.buildIntent(this);
+            startActivity(intent);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {

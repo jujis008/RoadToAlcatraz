@@ -10,6 +10,9 @@ import com.armoz.roadtoalcatraz.calendar.view.CalendarViewModule;
 import com.armoz.roadtoalcatraz.feed.datasource.FeedDataSourceModule;
 import com.armoz.roadtoalcatraz.feed.domain.FeedDomainModule;
 import com.armoz.roadtoalcatraz.feed.view.FeedViewModule;
+import com.armoz.roadtoalcatraz.strategy.datasource.StrategyDataSourceModule;
+import com.armoz.roadtoalcatraz.strategy.domain.StrategyDomainModule;
+import com.armoz.roadtoalcatraz.strategy.view.StrategyViewModule;
 import com.armoz.roadtoalcatraz.tournament.datasource.TournamentDataSourceModule;
 import com.armoz.roadtoalcatraz.tournament.domain.TournamentDomainModule;
 import com.armoz.roadtoalcatraz.tournament.view.TournamentViewModule;
@@ -66,6 +69,11 @@ public class BaseApplication extends Application {
                 new WelcomeDataSourceModule(),
                 new TrainViewModule(),
                 new TrainDomainModule(),
-                new TrainDataSourceModule());
+                new TrainDataSourceModule(),
+                new StrategyViewModule(),
+                new StrategyDomainModule(),
+                new StrategyDataSourceModule()
+        );
+
     }
 }

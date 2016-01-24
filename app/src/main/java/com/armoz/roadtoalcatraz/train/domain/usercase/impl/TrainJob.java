@@ -20,7 +20,7 @@ import javax.inject.Inject;
 
 public class TrainJob extends UserCaseJob implements Train {
 
-    private static final String TAG = "TrainJob";
+    private static final String TAG = "StrategyJob";
     private TrainCallback callback;
     private TrainDataSource trainDataSource;
     private PlayerModel model;

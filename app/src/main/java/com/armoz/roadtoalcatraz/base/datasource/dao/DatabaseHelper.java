@@ -7,6 +7,7 @@ import android.util.Log;
 import com.armoz.roadtoalcatraz.base.domain.model.GameModel;
 import com.armoz.roadtoalcatraz.base.domain.model.MessageModel;
 import com.armoz.roadtoalcatraz.base.domain.model.PlayerModel;
+import com.armoz.roadtoalcatraz.base.domain.model.StrategyModel;
 import com.armoz.roadtoalcatraz.base.domain.model.TournamentModel;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
@@ -28,6 +29,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private Dao<TournamentModel, String> tournamentsDao = null;
     private Dao<GameModel, String> gamesDao = null;
     private Dao<PlayerModel, String> playersDao = null;
+    private Dao<StrategyModel, String> strategyDao = null;
+
 
 
     public DatabaseHelper(Context context) {
@@ -45,6 +48,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.createTable(connectionSource, TournamentModel.class);
             TableUtils.createTable(connectionSource, GameModel.class);
             TableUtils.createTable(connectionSource, PlayerModel.class);
+            TableUtils.createTable(connectionSource, StrategyModel.class);
 
             createTestGames();
 
@@ -117,6 +121,13 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return playersDao;
     }
 
+    public Dao<StrategyModel, String> getStrategyDao() throws SQLException {
+        if (strategyDao == null) {
+            strategyDao = getDao(StrategyModel.class);
+        }
+        return strategyDao;
+    }
+
     /**
      * Close the database connections and clear any cached DAOs.
      */
@@ -127,5 +138,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         tournamentsDao = null;
         gamesDao = null;
         playersDao = null;
+        strategyDao = null;
     }
 }
