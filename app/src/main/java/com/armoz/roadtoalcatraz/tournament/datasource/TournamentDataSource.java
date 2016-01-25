@@ -7,5 +7,5 @@ import com.armoz.roadtoalcatraz.base.domain.model.TournamentModel;
  */
 public interface TournamentDataSource {
 
-    TournamentModel obtainTournamentInfo(long tournamentID);
+    TournamentModel obtainTournament(int tournamentID);
 }

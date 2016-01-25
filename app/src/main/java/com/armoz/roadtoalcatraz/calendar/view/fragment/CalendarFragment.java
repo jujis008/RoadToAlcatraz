@@ -13,7 +13,7 @@ import com.armoz.roadtoalcatraz.base.domain.model.TournamentModel;
 import com.armoz.roadtoalcatraz.base.view.decoration.TournamentDayDecoration;
 import com.armoz.roadtoalcatraz.base.view.fragment.BaseFragment;
 import com.armoz.roadtoalcatraz.calendar.view.controller.CalendarController;
-import com.armoz.roadtoalcatraz.tournament.view.activity.TournamentActivity;
+import com.armoz.roadtoalcatraz.tournamentDetail.view.activity.TournamentDetailActivity;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
@@ -117,7 +117,7 @@ public class CalendarFragment extends BaseFragment implements CalendarController
                     if (cal.get(Calendar.YEAR) == tournamentCalendar.get(Calendar.YEAR) &&
                             cal.get(Calendar.DAY_OF_YEAR) == tournamentCalendar.get(Calendar.DAY_OF_YEAR)) {
 
-                        Intent intent = TournamentActivity.buildIntent(getContext(), t.getId());
+                        Intent intent = TournamentDetailActivity.buildIntent(getContext(), t.getId());
                         startActivity(intent);
                     }
 

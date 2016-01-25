@@ -1,4 +1,4 @@
-package com.armoz.roadtoalcatraz.tournament.view.fragment;
+package com.armoz.roadtoalcatraz.tournamentDetail.view.fragment;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,9 +14,9 @@ import com.armoz.roadtoalcatraz.base.domain.events.ErrorEvent;
 import com.armoz.roadtoalcatraz.base.domain.model.TournamentModel;
 import com.armoz.roadtoalcatraz.base.view.decoration.DividerItemDecoration;
 import com.armoz.roadtoalcatraz.base.view.fragment.BaseFragment;
-import com.armoz.roadtoalcatraz.tournament.view.activity.TournamentActivity;
-import com.armoz.roadtoalcatraz.tournament.view.adapter.TournamentAdapter;
-import com.armoz.roadtoalcatraz.tournament.view.controller.TournamentController;
+import com.armoz.roadtoalcatraz.tournamentDetail.view.activity.TournamentDetailActivity;
+import com.armoz.roadtoalcatraz.tournamentDetail.view.adapter.TournamentDetailAdapter;
+import com.armoz.roadtoalcatraz.tournamentDetail.view.controller.TournamentDetailController;
 import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
@@ -26,11 +26,11 @@ import butterknife.Bind;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class TournamentFragment extends BaseFragment implements TournamentController.View {
+public class TournamentDetailFragment extends BaseFragment implements TournamentDetailController.View {
 
-    private static final String TAG = "TournamentFragment";
+    private static final String TAG = "TournamentDetailFragm";
     @Inject
-    TournamentController controller;
+    TournamentDetailController controller;
 
     @Inject
     Bus bus;
@@ -49,10 +49,10 @@ public class TournamentFragment extends BaseFragment implements TournamentContro
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter mAdapter;
 
-    private long tournamentId;
+    private int tournamentId;
 
 
-    public TournamentFragment() {
+    public TournamentDetailFragment() {
     }
 
     @Override
@@ -67,8 +67,8 @@ public class TournamentFragment extends BaseFragment implements TournamentContro
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         controller.setView(this);
-        tournamentId = getActivity().getIntent().getLongExtra(TournamentActivity.EXTRA_TOURNAMENT_ID, -1);
-        controller.obtainTournamentInfo(tournamentId);
+        tournamentId = getActivity().getIntent().getIntExtra(TournamentDetailActivity.EXTRA_TOURNAMENT_ID, -1);
+        controller.obtainTournament(tournamentId);
     }
 
     @Override
@@ -103,7 +103,7 @@ public class TournamentFragment extends BaseFragment implements TournamentContro
 
         Log.d(TAG, "GAMES: " + model.getGames().size());
         // specify an adapter (see also next example)
-        mAdapter = new TournamentAdapter(model.getGames());
+        mAdapter = new TournamentDetailAdapter(model.getGames());
 
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), R.drawable.item_divider));
 

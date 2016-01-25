@@ -1,12 +1,12 @@
-package com.armoz.roadtoalcatraz.tournament.domain.usercase.impl;
+package com.armoz.roadtoalcatraz.tournamentDetail.domain.usercase.impl;
 
 import com.armoz.roadtoalcatraz.base.domain.DomainErrorHandler;
 import com.armoz.roadtoalcatraz.base.domain.interactor.MainThread;
 import com.armoz.roadtoalcatraz.base.domain.interactor.impl.UserCaseJob;
 import com.armoz.roadtoalcatraz.base.domain.model.TournamentModel;
 import com.armoz.roadtoalcatraz.tournament.datasource.TournamentDataSource;
-import com.armoz.roadtoalcatraz.tournament.domain.callback.TournamentCallback;
-import com.armoz.roadtoalcatraz.tournament.domain.usercase.Tournament;
+import com.armoz.roadtoalcatraz.tournamentDetail.domain.callback.TournamentDetailCallback;
+import com.armoz.roadtoalcatraz.tournamentDetail.domain.usercase.TournamentDetail;
 import com.path.android.jobqueue.JobManager;
 import com.path.android.jobqueue.Params;
 
@@ -14,17 +14,17 @@ import javax.inject.Inject;
 
 ;
 
-public class TournamentJob extends UserCaseJob implements Tournament {
+public class TournamentDetailJob extends UserCaseJob implements TournamentDetail {
 
-    private TournamentCallback callback;
+    private TournamentDetailCallback callback;
     private TournamentDataSource tournamentDataSource;
     private TournamentModel model;
-    private long tournamentID;
+    private int tournamentID;
 
 
     @Inject
-    TournamentJob(JobManager jobManager, MainThread mainThread,
-                  DomainErrorHandler domainErrorHandler, TournamentDataSource tournamentDataSource
+    TournamentDetailJob(JobManager jobManager, MainThread mainThread,
+                        DomainErrorHandler domainErrorHandler, TournamentDataSource tournamentDataSource
     ) {
         super(jobManager, mainThread, new Params(UserCaseJob.DEFAULT_PRIORITY), domainErrorHandler);
         this.tournamentDataSource = tournamentDataSource;
@@ -33,7 +33,7 @@ public class TournamentJob extends UserCaseJob implements Tournament {
     @Override
     public void doRun() throws Throwable {
         try {
-            model = tournamentDataSource.obtainTournamentInfo(tournamentID);
+            model = tournamentDataSource.obtainTournament(tournamentID);
             onTournamentLoaded();
         }
         catch (Exception e){
@@ -56,15 +56,15 @@ public class TournamentJob extends UserCaseJob implements Tournament {
         sendCallback(new Runnable() {
             @Override
             public void run() {
-                callback.onTournamentLoaded(model);
+                callback.onTournamentDetailLoaded(model);
             }
         });
     }
 
 
     @Override
-    public void obtainTournamentInfo(TournamentCallback tournamentCallback, long tournamentID) {
-        this.callback = tournamentCallback;
+    public void obtainTournament(TournamentDetailCallback tournamentDetailCallback, int tournamentID) {
+        this.callback = tournamentDetailCallback;
         this.tournamentID = tournamentID;
         jobManager.addJob(this);
     }

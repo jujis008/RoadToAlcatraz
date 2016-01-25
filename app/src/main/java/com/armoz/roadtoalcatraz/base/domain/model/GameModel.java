@@ -13,19 +13,19 @@ import java.util.List;
 public class GameModel {
 
     @DatabaseField(generatedId = true, columnName = "ID")
-    private long id;
+    private int id;
 
     @DatabaseField(columnName = "TOURNAMENT_ID")
-    private long tournamentID;
+    private int tournamentID;
 
     @DatabaseField(columnName = "PLAYER_1_ID")
-    private long player1Id;
+    private int player1Id;
 
     @DatabaseField(columnName = "PLAYER_2_ID")
-    private long player2Id;
+    private int player2Id;
 
     @DatabaseField(columnName = "WINNER_ID")
-    private long winnerId;
+    private int winnerId;
 
     @DatabaseField(columnName = "DATE")
     private Date date;
@@ -183,43 +183,43 @@ public class GameModel {
         this.player2Stats = player2Stats;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public long getTournamentID() {
+    public int getTournamentID() {
         return tournamentID;
     }
 
-    public void setTournamentID(long tournamentID) {
+    public void setTournamentID(int tournamentID) {
         this.tournamentID = tournamentID;
     }
 
-    public long getPlayer1Id() {
+    public int getPlayer1Id() {
         return player1Id;
     }
 
-    public void setPlayer1Id(long player1Id) {
+    public void setPlayer1Id(int player1Id) {
         this.player1Id = player1Id;
     }
 
-    public long getPlayer2Id() {
+    public int getPlayer2Id() {
         return player2Id;
     }
 
-    public void setPlayer2Id(long player2Id) {
+    public void setPlayer2Id(int player2Id) {
         this.player2Id = player2Id;
     }
 
-    public long getWinnerId() {
+    public int getWinnerId() {
         return winnerId;
     }
 
-    public void setWinnerId(long winnerId) {
+    public void setWinnerId(int winnerId) {
         this.winnerId = winnerId;
     }
 

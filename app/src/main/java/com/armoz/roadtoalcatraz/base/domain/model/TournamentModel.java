@@ -12,7 +12,7 @@ import java.util.List;
 public class TournamentModel {
 
     @DatabaseField(generatedId = true, columnName = "ID")
-    private long id;
+    private int id;
 
     @DatabaseField(columnName = "NAME")
     private String name;
@@ -29,11 +29,11 @@ public class TournamentModel {
     private List<GameModel> games = new ArrayList<>();
 
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

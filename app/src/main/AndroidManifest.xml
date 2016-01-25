@@ -32,8 +32,8 @@
             android:label="@string/calendar_title"></activity>
 
         <activity
-            android:name=".tournament.view.activity.TournamentActivity"
-            android:label="@string/tournament_title"></activity>
+            android:name=".tournamentDetail.view.activity.TournamentDetailActivity"
+            android:label="@string/tournament_detail_title"></activity>
 
         <activity
             android:name=".train.view.activity.TrainActivity"

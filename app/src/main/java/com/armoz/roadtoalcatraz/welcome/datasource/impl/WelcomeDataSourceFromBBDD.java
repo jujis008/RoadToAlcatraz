@@ -230,7 +230,7 @@ public class WelcomeDataSourceFromBBDD implements WelcomeDataSource {
 
             //Creating tournament
             TournamentModel t = new TournamentModel();
-            t.setName("Tournament" + (i + 1));
+            t.setName("TournamentDetail" + (i + 1));
             t.setRounds(TOURNAMENT_ROUNDS);
             t.setDate(cal.getTime());
             t.setLevel(1);

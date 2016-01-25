@@ -10,12 +10,13 @@ import com.armoz.roadtoalcatraz.calendar.view.CalendarViewModule;
 import com.armoz.roadtoalcatraz.feed.datasource.FeedDataSourceModule;
 import com.armoz.roadtoalcatraz.feed.domain.FeedDomainModule;
 import com.armoz.roadtoalcatraz.feed.view.FeedViewModule;
+import com.armoz.roadtoalcatraz.player.datasource.PlayerDataSourceModule;
 import com.armoz.roadtoalcatraz.strategy.datasource.StrategyDataSourceModule;
 import com.armoz.roadtoalcatraz.strategy.domain.StrategyDomainModule;
 import com.armoz.roadtoalcatraz.strategy.view.StrategyViewModule;
 import com.armoz.roadtoalcatraz.tournament.datasource.TournamentDataSourceModule;
-import com.armoz.roadtoalcatraz.tournament.domain.TournamentDomainModule;
-import com.armoz.roadtoalcatraz.tournament.view.TournamentViewModule;
+import com.armoz.roadtoalcatraz.tournamentDetail.domain.TournamentDetailDomainModule;
+import com.armoz.roadtoalcatraz.tournamentDetail.view.TournamentDetailViewModule;
 import com.armoz.roadtoalcatraz.train.datasource.TrainDataSourceModule;
 import com.armoz.roadtoalcatraz.train.domain.TrainDomainModule;
 import com.armoz.roadtoalcatraz.train.view.TrainViewModule;
@@ -55,14 +56,15 @@ public class BaseApplication extends Application {
         return Arrays.asList(
                 new AndroidModule(this),
                 new GlobalDomainModule(),
+                new PlayerDataSourceModule(),
                 new FeedViewModule(),
                 new FeedDomainModule(),
                 new FeedDataSourceModule(),
                 new CalendarViewModule(),
                 new CalendarDomainModule(),
                 new CalendarDataSourceModule(),
-                new TournamentViewModule(),
-                new TournamentDomainModule(),
+                new TournamentDetailViewModule(),
+                new TournamentDetailDomainModule(),
                 new TournamentDataSourceModule(),
                 new WelcomeViewModule(),
                 new WelcomeDomainModule(),

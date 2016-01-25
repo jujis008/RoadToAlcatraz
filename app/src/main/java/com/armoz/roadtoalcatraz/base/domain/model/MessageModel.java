@@ -10,7 +10,7 @@ import java.util.Date;
 public class MessageModel {
 
     @DatabaseField(generatedId = true, columnName = "ID")
-    private long id;
+    private int id;
 
     @DatabaseField(columnName = "TITLE")
     private String title;
@@ -28,11 +28,11 @@ public class MessageModel {
     private Date date;
 
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

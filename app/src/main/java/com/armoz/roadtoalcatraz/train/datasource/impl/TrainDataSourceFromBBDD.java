@@ -5,7 +5,6 @@ import android.util.Log;
 import com.armoz.roadtoalcatraz.base.domain.model.PlayerModel;
 import com.armoz.roadtoalcatraz.train.datasource.TrainDataSource;
 import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.stmt.QueryBuilder;
 
 import java.sql.SQLException;
 import java.util.Date;
@@ -27,27 +26,9 @@ public class TrainDataSourceFromBBDD implements TrainDataSource {
     }
 
     @Override
-    public PlayerModel obtainPlayer() {
-        PlayerModel model = new PlayerModel();
+    public PlayerModel executeTraining(PlayerModel player) {
 
         try {
-            QueryBuilder<PlayerModel, String> builder = daoPlayers.queryBuilder();
-            builder.where().eq("USER_PLAYER", true);
-            model = daoPlayers.queryForFirst(builder.prepare());
-        } catch (SQLException e) {
-            Log.e(LOGTAG, "Error while obtaining player from BBDD", e);
-        }
-
-        return model;
-    }
-
-    @Override
-    public PlayerModel executeTraining() {
-
-        PlayerModel player = new PlayerModel();
-        try {
-            player = obtainPlayer();
-
             if (player.getTrainingFinishingDate() != null && player.getTrainingFinishingDate().before(new Date(System.currentTimeMillis()))) {
                 player = updateSkillsByTrainingType(player);
                 daoPlayers.update(player);
@@ -60,10 +41,8 @@ public class TrainDataSourceFromBBDD implements TrainDataSource {
     }
 
     @Override
-    public PlayerModel createTraining(String skillName, long time) {
-        PlayerModel player = new PlayerModel();
+    public PlayerModel createTraining(PlayerModel player, String skillName, long time) {
         try {
-            player = obtainPlayer();
             player.setTrainingType(skillName);
             player.setTrainingFinishingDate(new Date(System.currentTimeMillis() + (time * 1000)));
             daoPlayers.update(player);

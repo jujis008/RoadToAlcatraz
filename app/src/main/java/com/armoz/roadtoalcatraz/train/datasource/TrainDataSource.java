@@ -7,9 +7,7 @@ import com.armoz.roadtoalcatraz.base.domain.model.PlayerModel;
  */
 public interface TrainDataSource {
 
-    PlayerModel obtainPlayer();
+    PlayerModel executeTraining(PlayerModel playerModel);
 
-    PlayerModel executeTraining();
-
-    PlayerModel createTraining(String skillName, long time);
+    PlayerModel createTraining(PlayerModel playerModel, String skillName, long time);
 }

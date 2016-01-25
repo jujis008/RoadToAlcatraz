@@ -32,7 +32,7 @@ public class TournamentDataSourceFromBBDD implements TournamentDataSource {
     }
 
     @Override
-    public TournamentModel obtainTournamentInfo(long tournamentID) {
+    public TournamentModel obtainTournament(int tournamentID) {
 
         TournamentModel tournament = new TournamentModel();
         List<GameModel> games = new ArrayList<>();

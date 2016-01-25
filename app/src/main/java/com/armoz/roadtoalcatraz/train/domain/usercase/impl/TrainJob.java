@@ -1,12 +1,11 @@
 package com.armoz.roadtoalcatraz.train.domain.usercase.impl;
 
-import android.util.Log;
-
 import com.armoz.roadtoalcatraz.base.domain.DomainErrorHandler;
 import com.armoz.roadtoalcatraz.base.domain.events.ReloadEvent;
 import com.armoz.roadtoalcatraz.base.domain.interactor.MainThread;
 import com.armoz.roadtoalcatraz.base.domain.interactor.impl.UserCaseJob;
 import com.armoz.roadtoalcatraz.base.domain.model.PlayerModel;
+import com.armoz.roadtoalcatraz.player.datasource.PlayerDataSource;
 import com.armoz.roadtoalcatraz.train.datasource.TrainDataSource;
 import com.armoz.roadtoalcatraz.train.domain.callback.TrainCallback;
 import com.armoz.roadtoalcatraz.train.domain.usercase.Train;
@@ -20,9 +19,11 @@ import javax.inject.Inject;
 
 public class TrainJob extends UserCaseJob implements Train {
 
-    private static final String TAG = "StrategyJob";
+    private static final String TAG = "TrainJob";
     private TrainCallback callback;
     private TrainDataSource trainDataSource;
+    private PlayerDataSource playerDataSource;
+
     private PlayerModel model;
 
     @Inject
@@ -30,10 +31,11 @@ public class TrainJob extends UserCaseJob implements Train {
 
     @Inject
     TrainJob(JobManager jobManager, MainThread mainThread,
-             DomainErrorHandler domainErrorHandler, TrainDataSource trainDataSource
+             DomainErrorHandler domainErrorHandler, TrainDataSource trainDataSource, PlayerDataSource playerDataSource
     ) {
         super(jobManager, mainThread, new Params(UserCaseJob.DEFAULT_PRIORITY), domainErrorHandler);
         this.trainDataSource = trainDataSource;
+        this.playerDataSource = playerDataSource;
     }
 
     @Override
@@ -44,16 +46,15 @@ public class TrainJob extends UserCaseJob implements Train {
 
     @Override
     public void executeTraining() {
-        Log.d(TAG, "Executing job training");
-        PlayerModel playerModel = trainDataSource.executeTraining();
-        //post on bus
+        model = playerDataSource.obtainUserPlayer();
+        trainDataSource.executeTraining(model);
         bus.post(new ReloadEvent());
     }
 
     @Override
     public void doRun() throws Throwable {
         try {
-            model = trainDataSource.obtainPlayer();
+            model = playerDataSource.obtainUserPlayer();
             onPlayerLoaded();
         }
         catch (Exception e){

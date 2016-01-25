@@ -23,8 +23,8 @@
     <!-- Calendar -->
     <string name="calendar_title">Calendar</string>
 
-    <!-- Tournament -->
-    <string name="tournament_title">Tournament</string>
+    <!-- TournamentDetail -->
+    <string name="tournament_detail_title">Tournament</string>
 
     <!-- Training -->
     <string name="training_title">Training</string>

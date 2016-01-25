@@ -5,6 +5,7 @@ import com.armoz.roadtoalcatraz.base.domain.events.ReloadEvent;
 import com.armoz.roadtoalcatraz.base.domain.interactor.MainThread;
 import com.armoz.roadtoalcatraz.base.domain.interactor.impl.UserCaseJob;
 import com.armoz.roadtoalcatraz.base.domain.model.PlayerModel;
+import com.armoz.roadtoalcatraz.player.datasource.PlayerDataSource;
 import com.armoz.roadtoalcatraz.train.datasource.TrainDataSource;
 import com.armoz.roadtoalcatraz.train.domain.callback.CreateTrainingCallback;
 import com.armoz.roadtoalcatraz.train.domain.usercase.CreateTraining;
@@ -20,6 +21,7 @@ public class CreateTrainingJob extends UserCaseJob implements CreateTraining {
     private static final String TAG = "CreateTrainingJob";
     private CreateTrainingCallback callback;
     private TrainDataSource trainDataSource;
+    private PlayerDataSource playerDataSource;
     private String skillName;
     private long time;
 
@@ -28,10 +30,11 @@ public class CreateTrainingJob extends UserCaseJob implements CreateTraining {
 
     @Inject
     CreateTrainingJob(JobManager jobManager, MainThread mainThread,
-                      DomainErrorHandler domainErrorHandler, TrainDataSource trainDataSource
+                      DomainErrorHandler domainErrorHandler, TrainDataSource trainDataSource, PlayerDataSource playerDataSource
     ) {
         super(jobManager, mainThread, new Params(UserCaseJob.DEFAULT_PRIORITY), domainErrorHandler);
         this.trainDataSource = trainDataSource;
+        this.playerDataSource = playerDataSource;
     }
 
     @Override
@@ -45,7 +48,8 @@ public class CreateTrainingJob extends UserCaseJob implements CreateTraining {
     @Override
     public void doRun() throws Throwable {
         try {
-            PlayerModel playerModel = trainDataSource.createTraining(skillName, time);
+            PlayerModel playerModel = playerDataSource.obtainUserPlayer();
+            playerModel = trainDataSource.createTraining(playerModel,skillName, time);
             bus.post(new ReloadEvent());
             onTrainingCreated(playerModel);
         }

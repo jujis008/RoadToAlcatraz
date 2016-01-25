@@ -1,4 +1,4 @@
-package com.armoz.roadtoalcatraz.tournament.view.adapter;
+package com.armoz.roadtoalcatraz.tournamentDetail.view.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Created by ruben.arana on 24/12/15.
  */
-public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.ViewHolder> {
+public class TournamentDetailAdapter extends RecyclerView.Adapter<TournamentDetailAdapter.ViewHolder> {
 
     private List<GameModel> games;
 
@@ -50,13 +50,13 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public TournamentAdapter(List<GameModel> games) {
+    public TournamentDetailAdapter(List<GameModel> games) {
         this.games = games;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public TournamentAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+    public TournamentDetailAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                            int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
@@ -121,7 +121,7 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
 
             @Override
             public void onClick(View v) {
-                Log.d("TournamentAdapter", "SHOW BOXSCORE");
+                Log.d("TournamentDetailAdapter", "SHOW BOXSCORE");
             }
         });
 
@@ -129,7 +129,7 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
 
             @Override
             public void onClick(View v) {
-                Log.d("TournamentAdapter", "SHOW PLAYER 1 DATA");
+                Log.d("TournamentDetailAdapter", "SHOW PLAYER 1 DATA");
             }
         });
 
@@ -137,7 +137,7 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
 
             @Override
             public void onClick(View v) {
-                Log.d("TournamentAdapter", "SHOW PLAYER 2 DATA");
+                Log.d("TournamentDetailAdapter", "SHOW PLAYER 2 DATA");
             }
         });
     }
