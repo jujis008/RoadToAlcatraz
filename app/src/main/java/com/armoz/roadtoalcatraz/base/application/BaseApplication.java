@@ -4,12 +4,13 @@ import android.app.Application;
 
 import com.armoz.roadtoalcatraz.base.domain.GlobalDomainModule;
 import com.armoz.roadtoalcatraz.base.utils.module.AndroidModule;
-import com.armoz.roadtoalcatraz.calendar.datasource.CalendarDataSourceModule;
 import com.armoz.roadtoalcatraz.calendar.domain.CalendarDomainModule;
 import com.armoz.roadtoalcatraz.calendar.view.CalendarViewModule;
 import com.armoz.roadtoalcatraz.feed.datasource.FeedDataSourceModule;
 import com.armoz.roadtoalcatraz.feed.domain.FeedDomainModule;
 import com.armoz.roadtoalcatraz.feed.view.FeedViewModule;
+import com.armoz.roadtoalcatraz.game.datasource.GameDataSourceModule;
+import com.armoz.roadtoalcatraz.message.datasource.MessageDataSourceModule;
 import com.armoz.roadtoalcatraz.player.datasource.PlayerDataSourceModule;
 import com.armoz.roadtoalcatraz.strategy.datasource.StrategyDataSourceModule;
 import com.armoz.roadtoalcatraz.strategy.domain.StrategyDomainModule;
@@ -20,7 +21,6 @@ import com.armoz.roadtoalcatraz.tournamentDetail.view.TournamentDetailViewModule
 import com.armoz.roadtoalcatraz.train.datasource.TrainDataSourceModule;
 import com.armoz.roadtoalcatraz.train.domain.TrainDomainModule;
 import com.armoz.roadtoalcatraz.train.view.TrainViewModule;
-import com.armoz.roadtoalcatraz.welcome.datasource.WelcomeDataSourceModule;
 import com.armoz.roadtoalcatraz.welcome.domain.WelcomeDomainModule;
 import com.armoz.roadtoalcatraz.welcome.view.WelcomeViewModule;
 import com.crashlytics.android.Crashlytics;
@@ -62,19 +62,20 @@ public class BaseApplication extends Application {
                 new FeedDataSourceModule(),
                 new CalendarViewModule(),
                 new CalendarDomainModule(),
-                new CalendarDataSourceModule(),
+                new GameDataSourceModule(),
                 new TournamentDetailViewModule(),
                 new TournamentDetailDomainModule(),
                 new TournamentDataSourceModule(),
                 new WelcomeViewModule(),
                 new WelcomeDomainModule(),
-                new WelcomeDataSourceModule(),
+                new MessageDataSourceModule(),
                 new TrainViewModule(),
                 new TrainDomainModule(),
                 new TrainDataSourceModule(),
                 new StrategyViewModule(),
                 new StrategyDomainModule(),
                 new StrategyDataSourceModule()
+
         );
 
     }

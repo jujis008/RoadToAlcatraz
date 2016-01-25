@@ -9,6 +9,8 @@ import java.util.Date;
  */
 public class MessageModel {
 
+    public static final String TYPE_INFO = "INFO";
+
     @DatabaseField(generatedId = true, columnName = "ID")
     private int id;
 

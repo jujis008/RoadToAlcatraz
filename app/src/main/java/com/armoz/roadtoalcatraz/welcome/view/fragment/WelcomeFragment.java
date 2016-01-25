@@ -55,7 +55,7 @@ public class WelcomeFragment extends BaseFragment implements WelcomeController.V
             startActivity(intent);
         }
         else{
-            controller.createNewGame();
+            controller.createNewGame(getContext());
         }
 
         //start loading...

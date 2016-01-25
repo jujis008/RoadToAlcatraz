@@ -1,5 +1,7 @@
 package com.armoz.roadtoalcatraz.welcome.view.controller;
 
+import android.content.Context;
+
 import com.armoz.roadtoalcatraz.welcome.domain.callback.WelcomeCallback;
 import com.armoz.roadtoalcatraz.welcome.domain.usercase.Welcome;
 
@@ -36,8 +38,8 @@ public class WelcomeController {
 
     };
 
-    public void createNewGame() {
-        welcomeJob.createNewGame(welcomeCallback);
+    public void createNewGame(Context context) {
+        welcomeJob.createNewGame(context, welcomeCallback);
     }
     
     public interface View {
