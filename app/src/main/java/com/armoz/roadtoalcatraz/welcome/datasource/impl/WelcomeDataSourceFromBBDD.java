@@ -30,6 +30,14 @@ public class WelcomeDataSourceFromBBDD implements WelcomeDataSource {
     private static final int TOURNAMENT_MINUTE = 0;
     private static final int TOURNAMENT_SECOND = 0;
     private static final int TOURNAMENT_ROUNDS = 3;
+    private static final int PLAYER_NUMBER = 64;
+    private static final int MAX_AGE = 33;
+    private static final int MIN_AGE = 18;
+    private static final int MIN_SKILL_VALUE = 0;
+    private static final int MAX_SKILL_VALUE = 100;
+    private static final int MIN_STRATEGY_VALUE = 0;
+    private static final int MAX_STRATEGY_VALUE = 100;
+
     private final Dao<TournamentModel, String> daoTournament;
     private final Dao<MessageModel, String> daoMessages;
     private final Dao<GameModel, String> daoGames;
@@ -62,22 +70,88 @@ public class WelcomeDataSourceFromBBDD implements WelcomeDataSource {
         createFirstMessage();
         createQuestMessage();
 
-        //Crear rewards
+        //Creating quests
 
-        //Crear myPLayer + my strategy
-        PlayerModel playerModel = createMyPlayer();
-        createMyStrategy(playerModel);
+        //Creating user player
+        createMyPlayer();
 
-        //Crear tornejos temporada
+        //Creating players
+        createAllPlayers(PLAYER_NUMBER);
+
+        //Creating tournaments
         createSeasonTournaments();
-        //Crear resta de jugadors
 
-        //Crear resta de estrategies
-
-        //Crear resta de personal
+        //Creating employees
         Log.d(TAG, "Game created datasource");
 
 
+    }
+
+    private void createAllPlayers(int playersNumber) throws Exception {
+
+        for (int i = 0; i < playersNumber; i++) {
+
+            PlayerModel player = new PlayerModel();
+            player.setUserPlayer(false);
+            player.setAge(getRandomValue(MIN_AGE, MAX_AGE) + MIN_AGE);
+            player.setHeight(190);
+            player.setWeight(90);
+            player.setName("Name" + i);
+            player.setSurname("Surname" + i);
+            player.setCountry("Spain");
+            player.setYearsPlayed(MAX_AGE - MIN_AGE);
+
+            //Physical
+            player.setStamina(getRandomValue(MIN_SKILL_VALUE, MAX_SKILL_VALUE));
+            player.setJump(getRandomValue(MIN_SKILL_VALUE, MAX_SKILL_VALUE));
+            player.setSpeed(getRandomValue(MIN_SKILL_VALUE, MAX_SKILL_VALUE));
+            player.setStrength(getRandomValue(MIN_SKILL_VALUE, MAX_SKILL_VALUE));
+
+            //Technical Ofensive Skills
+            player.setDribble(getRandomValue(MIN_SKILL_VALUE, MAX_SKILL_VALUE));
+            player.setPostPlay(getRandomValue(MIN_SKILL_VALUE, MAX_SKILL_VALUE));
+            player.setIntShoot(getRandomValue(MIN_SKILL_VALUE, MAX_SKILL_VALUE));
+            player.setExtShoot(getRandomValue(MIN_SKILL_VALUE, MAX_SKILL_VALUE));
+            player.setOffensiveRebounding(getRandomValue(MIN_SKILL_VALUE, MAX_SKILL_VALUE));
+
+            //Technical Defensive Skills
+            player.setSteal(getRandomValue(MIN_SKILL_VALUE, MAX_SKILL_VALUE));
+            player.setBlock(getRandomValue(MIN_SKILL_VALUE, MAX_SKILL_VALUE));
+            player.setIntDefense(getRandomValue(MIN_SKILL_VALUE, MAX_SKILL_VALUE));
+            player.setExtDefense(getRandomValue(MIN_SKILL_VALUE, MAX_SKILL_VALUE));
+            player.setDefensiveRebounding(getRandomValue(MIN_SKILL_VALUE, MAX_SKILL_VALUE));
+
+            //Mental Skills
+            player.setMentalToughness(getRandomValue(MIN_SKILL_VALUE, MAX_SKILL_VALUE));
+            player.setWorkethic(getRandomValue(MIN_SKILL_VALUE, MAX_SKILL_VALUE));
+            player.setFriendly(getRandomValue(MIN_SKILL_VALUE, MAX_SKILL_VALUE));
+
+            daoPlayers.create(player);
+
+            createStrategy(player);
+        }
+    }
+
+    private void createStrategy(PlayerModel playerModel) throws SQLException{
+
+        StrategyModel strategy = new StrategyModel();
+        strategy.setLessToMorePhysical(getRandomValue(MIN_STRATEGY_VALUE, MAX_STRATEGY_VALUE));
+        strategy.setLessToMoreTrashtalking(getRandomValue(MIN_STRATEGY_VALUE, MAX_STRATEGY_VALUE));
+
+        strategy.setLessToMoreExtActions(getRandomValue(MIN_STRATEGY_VALUE, MAX_STRATEGY_VALUE));
+        strategy.setPenetrationVsPostmove(getRandomValue(MIN_STRATEGY_VALUE, MAX_STRATEGY_VALUE));
+        strategy.setQuickVsElaboratedShoot(getRandomValue(MIN_STRATEGY_VALUE, MAX_STRATEGY_VALUE));
+        strategy.setFightOffensiveRebounding(getRandomValue(MIN_STRATEGY_VALUE, MAX_STRATEGY_VALUE));
+
+        strategy.setLessToMoreSteal(getRandomValue(MIN_STRATEGY_VALUE, MAX_STRATEGY_VALUE));
+        strategy.setLessToMoreSpacing(getRandomValue(MIN_STRATEGY_VALUE, MAX_STRATEGY_VALUE));
+        strategy.setLessToMoreBlocking(getRandomValue(MIN_STRATEGY_VALUE, MAX_STRATEGY_VALUE));
+        strategy.setFightDefensiveRebounding(getRandomValue(MIN_STRATEGY_VALUE, MAX_STRATEGY_VALUE));
+
+        daoStrategy.create(strategy);
+
+        playerModel.setStrategy(strategy.getId());
+        daoPlayers.update(playerModel);
     }
 
     private void createMyStrategy(PlayerModel playerModel) throws SQLException {
@@ -103,7 +177,7 @@ public class WelcomeDataSourceFromBBDD implements WelcomeDataSource {
 
     }
 
-    private PlayerModel createMyPlayer() throws SQLException{
+    private void createMyPlayer() throws SQLException{
 
         PlayerModel player = new PlayerModel();
         player.setUserPlayer(true);
@@ -142,7 +216,7 @@ public class WelcomeDataSourceFromBBDD implements WelcomeDataSource {
 
         daoPlayers.create(player);
 
-        return player;
+        createMyStrategy(player);
     }
 
     private void createSeasonTournaments() throws SQLException {
@@ -212,4 +286,10 @@ public class WelcomeDataSourceFromBBDD implements WelcomeDataSource {
         m.setType("INFO");
         daoMessages.create(m);
     }
+
+    private int getRandomValue(int minValue, int maxValue){
+        return (int) ((Math.random() * (maxValue - minValue)) + minValue);
+    }
 }
+
+

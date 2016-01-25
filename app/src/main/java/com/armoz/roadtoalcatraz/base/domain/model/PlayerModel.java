@@ -46,7 +46,7 @@ public class PlayerModel {
     public static final String USER_PLAYER = "USER_PLAYER";
 
     @DatabaseField(generatedId = true, columnName = ID)
-    private long id;
+    private int id;
 
     @DatabaseField(columnName = NAME)
     private String name;
@@ -61,10 +61,10 @@ public class PlayerModel {
     private String country;
 
     @DatabaseField(columnName = HEIGHT)
-    private long height;
+    private int height;
 
     @DatabaseField(columnName = WEIGHT)
-    private long weight;
+    private int weight;
 
     @DatabaseField(columnName = YEARS_PLAYED)
     private int yearsPlayed;
@@ -73,70 +73,70 @@ public class PlayerModel {
     //Physical Skills
 
     @DatabaseField(columnName = SKILL_STAMINA)
-    private long stamina;
+    private int stamina;
 
     @DatabaseField(columnName = SKILL_JUMP)
-    private long jump;
+    private int jump;
 
     @DatabaseField(columnName = SKILL_SPEED)
-    private long speed;
+    private int speed;
 
     @DatabaseField(columnName = SKILL_STRENGTH)
-    private long strength;
+    private int strength;
 
     //Technical Ofensive Skills
 
     @DatabaseField(columnName = SKILL_DRIBBLE)
-    private long dribble;
+    private int dribble;
 
     @DatabaseField(columnName = SKILL_POST_PLAY)
-    private long postPlay;
+    private int postPlay;
 
     @DatabaseField(columnName = SKILL_INT_SHOOT)
-    private long intShoot;
+    private int intShoot;
 
     @DatabaseField(columnName = SKILL_EXT_SHOOT)
-    private long extShoot;
+    private int extShoot;
 
     @DatabaseField(columnName = SKILL_OFFENSIVE_REBOUND)
-    private long offensiveRebounding;
+    private int offensiveRebounding;
 
 
     //Technical Defensive Skills
 
     @DatabaseField(columnName = SKILL_STEAL)
-    private long steal;
+    private int steal;
 
     @DatabaseField(columnName = SKILL_BLOCK)
-    private long block;
+    private int block;
 
     @DatabaseField(columnName = SKILL_INT_DEFENSE)
-    private long intDefense;
+    private int intDefense;
 
     @DatabaseField(columnName = SKILL_EXT_DEFENSE)
-    private long extDefense;
+    private int extDefense;
 
     @DatabaseField(columnName = SKILL_DEFENSIVE_REBOUND)
-    private long defensiveRebounding;
+    private int defensiveRebounding;
 
 
     //Mental Skills
 
     @DatabaseField(columnName = SKILL_MENTAL_TOUGHNESS)
-    private long mentalToughness;
+    private int mentalToughness;
 
     @DatabaseField(columnName = SKILL_WORKETHIC)
-    private long workethic;
+    private int workethic;
 
     @DatabaseField(columnName = SKILL_FRIENDLY)
-    private long friendly;
+    private int friendly;
 
     @DatabaseField(columnName = SKILL_POPULAR)
-    private long popular;
+    private int popular;
 
 
     @DatabaseField(columnName = STRATEGY)
-    private long strategy;
+    private int strategy;
 
 
     private boolean atacking;
@@ -151,11 +151,11 @@ public class PlayerModel {
     private boolean userPlayer;
 
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -191,19 +191,19 @@ public class PlayerModel {
         this.country = country;
     }
 
-    public long getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public void setHeight(long height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 
-    public long getWeight() {
+    public int getWeight() {
         return weight;
     }
 
-    public void setWeight(long weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
 
@@ -215,155 +215,155 @@ public class PlayerModel {
         this.yearsPlayed = yearsPlayed;
     }
 
-    public long getStamina() {
+    public int getStamina() {
         return stamina;
     }
 
-    public void setStamina(long stamina) {
+    public void setStamina(int stamina) {
         this.stamina = stamina;
     }
 
-    public long getJump() {
+    public int getJump() {
         return jump;
     }
 
-    public void setJump(long jump) {
+    public void setJump(int jump) {
         this.jump = jump;
     }
 
-    public long getSpeed() {
+    public int getSpeed() {
         return speed;
     }
 
-    public void setSpeed(long speed) {
+    public void setSpeed(int speed) {
         this.speed = speed;
     }
 
-    public long getStrength() {
+    public int getStrength() {
         return strength;
     }
 
-    public void setStrength(long strength) {
+    public void setStrength(int strength) {
         this.strength = strength;
     }
 
-    public long getDribble() {
+    public int getDribble() {
         return dribble;
     }
 
-    public void setDribble(long dribble) {
+    public void setDribble(int dribble) {
         this.dribble = dribble;
     }
 
-    public long getPostPlay() {
+    public int getPostPlay() {
         return postPlay;
     }
 
-    public void setPostPlay(long postPlay) {
+    public void setPostPlay(int postPlay) {
         this.postPlay = postPlay;
     }
 
-    public long getIntShoot() {
+    public int getIntShoot() {
         return intShoot;
     }
 
-    public void setIntShoot(long intShoot) {
+    public void setIntShoot(int intShoot) {
         this.intShoot = intShoot;
     }
 
-    public long getExtShoot() {
+    public int getExtShoot() {
         return extShoot;
     }
 
-    public void setExtShoot(long extShoot) {
+    public void setExtShoot(int extShoot) {
         this.extShoot = extShoot;
     }
 
-    public long getOffensiveRebounding() {
+    public int getOffensiveRebounding() {
         return offensiveRebounding;
     }
 
-    public void setOffensiveRebounding(long offensiveRebounding) {
+    public void setOffensiveRebounding(int offensiveRebounding) {
         this.offensiveRebounding = offensiveRebounding;
     }
 
-    public long getSteal() {
+    public int getSteal() {
         return steal;
     }
 
-    public void setSteal(long steal) {
+    public void setSteal(int steal) {
         this.steal = steal;
     }
 
-    public long getBlock() {
+    public int getBlock() {
         return block;
     }
 
-    public void setBlock(long block) {
+    public void setBlock(int block) {
         this.block = block;
     }
 
-    public long getIntDefense() {
+    public int getIntDefense() {
         return intDefense;
     }
 
-    public void setIntDefense(long intDefense) {
+    public void setIntDefense(int intDefense) {
         this.intDefense = intDefense;
     }
 
-    public long getExtDefense() {
+    public int getExtDefense() {
         return extDefense;
     }
 
-    public void setExtDefense(long extDefense) {
+    public void setExtDefense(int extDefense) {
         this.extDefense = extDefense;
     }
 
-    public long getDefensiveRebounding() {
+    public int getDefensiveRebounding() {
         return defensiveRebounding;
     }
 
-    public void setDefensiveRebounding(long defensiveRebounding) {
+    public void setDefensiveRebounding(int defensiveRebounding) {
         this.defensiveRebounding = defensiveRebounding;
     }
 
-    public long getMentalToughness() {
+    public int getMentalToughness() {
         return mentalToughness;
     }
 
-    public void setMentalToughness(long mentalToughness) {
+    public void setMentalToughness(int mentalToughness) {
         this.mentalToughness = mentalToughness;
     }
 
-    public long getWorkethic() {
+    public int getWorkethic() {
         return workethic;
     }
 
-    public void setWorkethic(long workethic) {
+    public void setWorkethic(int workethic) {
         this.workethic = workethic;
     }
 
-    public long getFriendly() {
+    public int getFriendly() {
         return friendly;
     }
 
-    public void setFriendly(long friendly) {
+    public void setFriendly(int friendly) {
         this.friendly = friendly;
     }
 
-    public long getPopular() {
+    public int getPopular() {
         return popular;
     }
 
-    public void setPopular(long popular) {
+    public void setPopular(int popular) {
         this.popular = popular;
     }
 
-    public long getStrategy() {
+    public int getStrategy() {
         return strategy;
     }
 
-    public void setStrategy(long strategy) {
+    public void setStrategy(int strategy) {
         this.strategy = strategy;
     }
 
