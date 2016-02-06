@@ -16,13 +16,14 @@ import com.armoz.roadtoalcatraz.strategy.datasource.StrategyDataSourceModule;
 import com.armoz.roadtoalcatraz.strategy.domain.StrategyDomainModule;
 import com.armoz.roadtoalcatraz.strategy.view.StrategyViewModule;
 import com.armoz.roadtoalcatraz.tournament.datasource.TournamentDataSourceModule;
+import com.armoz.roadtoalcatraz.tournament.domain.TournamentDomainModule;
 import com.armoz.roadtoalcatraz.tournamentDetail.domain.TournamentDetailDomainModule;
 import com.armoz.roadtoalcatraz.tournamentDetail.view.TournamentDetailViewModule;
 import com.armoz.roadtoalcatraz.train.datasource.TrainDataSourceModule;
 import com.armoz.roadtoalcatraz.train.domain.TrainDomainModule;
 import com.armoz.roadtoalcatraz.train.view.TrainViewModule;
-import com.armoz.roadtoalcatraz.welcome.domain.WelcomeDomainModule;
-import com.armoz.roadtoalcatraz.welcome.view.WelcomeViewModule;
+import com.armoz.roadtoalcatraz.newGame.domain.NewGameDomainModule;
+import com.armoz.roadtoalcatraz.newGame.view.NewGameViewModule;
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.answers.Answers;
 import com.crashlytics.android.ndk.CrashlyticsNdk;
@@ -55,27 +56,27 @@ public class BaseApplication extends Application {
     protected List<Object> getModules() {
         return Arrays.asList(
                 new AndroidModule(this),
-                new GlobalDomainModule(),
-                new PlayerDataSourceModule(),
+                new CalendarViewModule(),
+                new CalendarDomainModule(),
                 new FeedViewModule(),
                 new FeedDomainModule(),
                 new FeedDataSourceModule(),
-                new CalendarViewModule(),
-                new CalendarDomainModule(),
                 new GameDataSourceModule(),
+                new GlobalDomainModule(),
+                new MessageDataSourceModule(),
+                new PlayerDataSourceModule(),
+                new StrategyViewModule(),
+                new StrategyDomainModule(),
+                new StrategyDataSourceModule(),
                 new TournamentDetailViewModule(),
                 new TournamentDetailDomainModule(),
+                new TournamentDomainModule(),
                 new TournamentDataSourceModule(),
-                new WelcomeViewModule(),
-                new WelcomeDomainModule(),
-                new MessageDataSourceModule(),
                 new TrainViewModule(),
                 new TrainDomainModule(),
                 new TrainDataSourceModule(),
-                new StrategyViewModule(),
-                new StrategyDomainModule(),
-                new StrategyDataSourceModule()
-
+                new NewGameViewModule(),
+                new NewGameDomainModule()
         );
 
     }

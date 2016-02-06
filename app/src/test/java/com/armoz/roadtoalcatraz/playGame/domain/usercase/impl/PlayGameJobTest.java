@@ -72,7 +72,7 @@ public class PlayGameJobTest extends AbstractJob {
         strategy.setFightOffensiveRebounding(50);
         strategy.setLessToMoreSteal(50);
         strategy.setLessToMoreSpacing(50);
-        strategy.setBlocking(50);
+        strategy.setLessToMoreBlocking(50);
         strategy.setFightDefensiveRebounding(50);
 
         return strategy;
@@ -85,7 +85,6 @@ public class PlayGameJobTest extends AbstractJob {
         player.setAge(19);
         player.setBlock(50);
         player.setCountry("Spain");
-        player.setDefensiveOverall(50);
         player.setDefensiveRebounding(50);
         player.setDribble(50);
         player.setExtDefense(50);
@@ -93,15 +92,12 @@ public class PlayGameJobTest extends AbstractJob {
         player.setFriendly(50);
         player.setHeight(181);
         player.setWeight(80);
-        player.setId(1L);
+        player.setId(1);
         player.setIntDefense(50);
         player.setIntShoot(50);
         player.setJump(50);
         player.setMentalToughness(50);
-        player.setOffensiveOverall(50);
         player.setOffensiveRebounding(50);
-        player.setOverall(50);
-        player.setPhysicalOverall(50);
         player.setPopular(50);
         player.setPostPlay(50);
         player.setStamina(50);

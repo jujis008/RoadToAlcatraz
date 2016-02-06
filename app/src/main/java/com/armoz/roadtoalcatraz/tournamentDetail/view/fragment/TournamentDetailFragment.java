@@ -69,6 +69,7 @@ public class TournamentDetailFragment extends BaseFragment implements Tournament
         controller.setView(this);
         tournamentId = getActivity().getIntent().getIntExtra(TournamentDetailActivity.EXTRA_TOURNAMENT_ID, -1);
         controller.obtainTournament(tournamentId);
+        Log.d(TAG, "TournamentID: " + tournamentId);
     }
 
     @Override

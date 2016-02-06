@@ -1,42 +1,41 @@
-package com.armoz.roadtoalcatraz.welcome.domain.usercase.impl;
+package com.armoz.roadtoalcatraz.newGame.domain.usercase.impl;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.armoz.roadtoalcatraz.R;
 import com.armoz.roadtoalcatraz.base.domain.DomainErrorHandler;
 import com.armoz.roadtoalcatraz.base.domain.interactor.MainThread;
 import com.armoz.roadtoalcatraz.base.domain.interactor.impl.UserCaseJob;
 import com.armoz.roadtoalcatraz.base.domain.model.MessageModel;
-import com.armoz.roadtoalcatraz.base.domain.model.TournamentModel;
 import com.armoz.roadtoalcatraz.game.datasource.GameDataSource;
 import com.armoz.roadtoalcatraz.message.datasource.MessageDataSource;
+import com.armoz.roadtoalcatraz.newGame.domain.callback.NewGameCallback;
+import com.armoz.roadtoalcatraz.newGame.domain.usercase.NewGame;
 import com.armoz.roadtoalcatraz.player.datasource.PlayerDataSource;
 import com.armoz.roadtoalcatraz.tournament.datasource.TournamentDataSource;
-import com.armoz.roadtoalcatraz.welcome.domain.callback.WelcomeCallback;
-import com.armoz.roadtoalcatraz.welcome.domain.usercase.Welcome;
+import com.armoz.roadtoalcatraz.tournament.domain.usercase.impl.PrepareTournamentJob;
 import com.path.android.jobqueue.JobManager;
 import com.path.android.jobqueue.Params;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
-;
 
-public class WelcomeJob extends UserCaseJob implements Welcome {
+public class NewGameJob extends UserCaseJob implements NewGame {
 
-    private static final String TAG = "WelcomeJob";
-    private WelcomeCallback callback;
+    private static final String TAG = "NewGameJob";
+    private NewGameCallback callback;
     private MessageDataSource messageDataSource;
     private PlayerDataSource playerDataSource;
     private TournamentDataSource tournamentDataSource;
     private GameDataSource gameDataSource;
+    private PrepareTournamentJob prepareTournamentJob;
 
     private Context context;
 
 
     @Inject
-    WelcomeJob(JobManager jobManager, MainThread mainThread, DomainErrorHandler domainErrorHandler,
+    NewGameJob(JobManager jobManager, MainThread mainThread, DomainErrorHandler domainErrorHandler,
                MessageDataSource messageDataSource,
                PlayerDataSource playerDataSource, TournamentDataSource tournamentDataSource,
                GameDataSource gameDataSource
@@ -49,32 +48,33 @@ public class WelcomeJob extends UserCaseJob implements Welcome {
 
     }
 
-
     @Override
     public void doRun() throws Throwable {
         try {
             //Creating messages
-            messageDataSource.createMessage(context.getString(R.string.welcome_first_message_title),
-                    context.getString(R.string.welcome_first_message_body), MessageModel.TYPE_INFO);
-            messageDataSource.createMessage(context.getString(R.string.welcome_quest_message_title),
-                    context.getString(R.string.welcome_quest_message_body), MessageModel.TYPE_INFO);
+            Log.d(TAG, "--------------------------  MESSAGES -----------------------------");
+            messageDataSource.createMessage(context.getString(R.string.new_game_first_message_title),
+                    context.getString(R.string.new_game_first_message_body), MessageModel.TYPE_INFO);
+            messageDataSource.createMessage(context.getString(R.string.new_game_quest_message_title),
+                    context.getString(R.string.new_game_quest_message_body), MessageModel.TYPE_INFO);
 
             //Creating quests
 
+
             //Creating user player
+            Log.d(TAG, "--------------------------  USER PLAYER -----------------------------");
             playerDataSource.createMyPlayer();
 
             //Creating players
+            Log.d(TAG, "--------------------------  PLAYERS -----------------------------");
             playerDataSource.createAllPlayers();
 
             //Creating tournaments
-            List<TournamentModel> tournamentModelList = tournamentDataSource.createSeasonTournaments();
-
-            for (TournamentModel t : tournamentModelList) {
-                gameDataSource.createTournamentGames(t);
-            }
+            Log.d(TAG, "--------------------------  TOURNAMENTS -----------------------------");
+            tournamentDataSource.createSeasonTournaments();
 
             onNewGameCreated();
+
         }
         catch (Exception e){
             notifyError();
@@ -103,8 +103,8 @@ public class WelcomeJob extends UserCaseJob implements Welcome {
 
 
     @Override
-    public void createNewGame(Context context, WelcomeCallback welcomeCallback) {
-        this.callback = welcomeCallback;
+    public void createNewGame(Context context, NewGameCallback newGameCallback) {
+        this.callback = newGameCallback;
         this.context = context;
         jobManager.addJob(this);
     }

@@ -17,7 +17,7 @@ import javax.inject.Inject;
 
 public class UpdateStrategyJob extends UserCaseJob implements UpdateStrategy {
 
-    private static final String TAG = "UpdateStrategyJob";
+    private static final String TAG = "PrepareTournamentJob";
     private StrategyDataSource strategyDataSource;
     private StrategyModel strategyModel;
     private UpdateStrategyCallback callback;

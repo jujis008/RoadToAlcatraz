@@ -14,4 +14,6 @@ public interface PlayerDataSource {
     PlayerModel createMyPlayer();
 
     List<PlayerModel> createAllPlayers();
+
+    List<PlayerModel> obtainPlayers(long numPlayers);
 }

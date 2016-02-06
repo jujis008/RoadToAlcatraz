@@ -6,6 +6,7 @@ import com.armoz.roadtoalcatraz.base.domain.model.GameModel;
 import com.armoz.roadtoalcatraz.base.domain.model.TournamentModel;
 import com.armoz.roadtoalcatraz.game.datasource.GameDataSource;
 import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.stmt.QueryBuilder;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -61,6 +62,34 @@ public class GameDataSourceFromBBDD implements GameDataSource {
 
         return gameList;
     }
+
+    @Override
+    public void updateGame(GameModel game) {
+
+        try {
+            daoGames.update(game);
+        } catch (SQLException e) {
+            Log.e(TAG, "Error while updating game", e);
+        }
+
+    }
+
+    @Override
+    public List<GameModel> obtainTournamentGames(int tournamentId) {
+
+        List<GameModel> games = new ArrayList<>();
+
+        try {
+            QueryBuilder<GameModel, String> builder = daoGames.queryBuilder();
+            builder.where().eq(GameModel.TOURNAMENT_ID, tournamentId);
+            games = daoGames.query(builder.prepare());
+        } catch (SQLException e) {
+            Log.e(TAG, "Error while obtaining tournament games from BBDD", e);
+        }
+
+        return games;
+    }
+
 }
 
 

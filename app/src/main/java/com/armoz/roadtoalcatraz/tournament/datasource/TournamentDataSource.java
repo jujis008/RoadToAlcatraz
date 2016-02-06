@@ -15,4 +15,5 @@ public interface TournamentDataSource {
 
     List<TournamentModel> createSeasonTournaments();
 
+    TournamentModel obtainNextTournament();
 }

@@ -1,4 +1,4 @@
-package com.armoz.roadtoalcatraz.welcome.view.fragment;
+package com.armoz.roadtoalcatraz.newGame.view.fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,32 +12,34 @@ import com.armoz.roadtoalcatraz.R;
 import com.armoz.roadtoalcatraz.base.domain.events.ErrorEvent;
 import com.armoz.roadtoalcatraz.base.view.fragment.BaseFragment;
 import com.armoz.roadtoalcatraz.feed.view.activity.FeedActivity;
-import com.armoz.roadtoalcatraz.welcome.view.controller.WelcomeController;
+import com.armoz.roadtoalcatraz.newGame.view.controller.NewGameController;
 import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
 
+import hugo.weaving.DebugLog;
+
 /**
  * A placeholder fragment containing a simple view.
  */
-public class WelcomeFragment extends BaseFragment implements WelcomeController.View {
+public class NewGameFragment extends BaseFragment implements NewGameController.View {
 
     @Inject
-    WelcomeController controller;
+    NewGameController controller;
 
     @Inject
     Bus bus;
 
     private View rootView;
 
-    public WelcomeFragment() {
+    public NewGameFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        rootView = inflater.inflate(R.layout.fragment_welcome, container, false);
+        rootView = inflater.inflate(R.layout.fragment_newgame, container, false);
         return rootView;
     }
 
@@ -82,6 +84,7 @@ public class WelcomeFragment extends BaseFragment implements WelcomeController.V
     }
 
     @Override
+    @DebugLog
     public void onNewGameCreated() {
         //end loading
 

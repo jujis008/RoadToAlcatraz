@@ -1,4 +1,4 @@
-package com.armoz.roadtoalcatraz.welcome.view.activity;
+package com.armoz.roadtoalcatraz.newGame.view.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,15 +7,15 @@ import android.os.Bundle;
 import com.armoz.roadtoalcatraz.R;
 import com.armoz.roadtoalcatraz.base.domain.events.ErrorEvent;
 import com.armoz.roadtoalcatraz.base.view.activity.BaseActivity;
-import com.armoz.roadtoalcatraz.welcome.view.fragment.WelcomeFragment;
+import com.armoz.roadtoalcatraz.newGame.view.fragment.NewGameFragment;
 
 
-public class WelcomeActivity extends BaseActivity {
+public class NewGameActivity extends BaseActivity {
 
-    private WelcomeFragment welcomeFragment;
+    private NewGameFragment newGameFragment;
 
     public static Intent buildIntent(Context context) {
-        Intent intent = new Intent(context, WelcomeActivity.class);
+        Intent intent = new Intent(context, NewGameActivity.class);
         return intent;
     }
 
@@ -25,15 +25,15 @@ public class WelcomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         if (savedInstanceState == null) {
-            welcomeFragment = new WelcomeFragment();
-            getSupportFragmentManager().beginTransaction().add(R.id.frame_layout, welcomeFragment).commit();
+            newGameFragment = new NewGameFragment();
+            getSupportFragmentManager().beginTransaction().add(R.id.frame_layout, newGameFragment).commit();
         }
     }
 
     @Override
     protected boolean showError(ErrorEvent event) {
-        if (welcomeFragment != null) {
-            return welcomeFragment.showError(event);
+        if (newGameFragment != null) {
+            return newGameFragment.showError(event);
         }
         return false;
     }

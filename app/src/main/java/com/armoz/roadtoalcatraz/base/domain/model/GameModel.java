@@ -12,25 +12,33 @@ import java.util.List;
  */
 public class GameModel {
 
-    @DatabaseField(generatedId = true, columnName = "ID")
+    public static final String ID = "ID";
+    public static final String TOURNAMENT_ID = "TOURNAMENT_ID";
+    public static final String PLAYER_1_ID = "PLAYER_1_ID";
+    public static final String PLAYER_2_ID = "PLAYER_2_ID";
+    public static final String WINNER_ID = "WINNER_ID";
+    public static final String DATE = "DATE";
+    public static final String ROUND = "ROUND";
+
+    @DatabaseField(generatedId = true, columnName = ID)
     private int id;
 
-    @DatabaseField(columnName = "TOURNAMENT_ID")
+    @DatabaseField(columnName = TOURNAMENT_ID)
     private int tournamentID;
 
-    @DatabaseField(columnName = "PLAYER_1_ID")
+    @DatabaseField(columnName = PLAYER_1_ID)
     private int player1Id;
 
-    @DatabaseField(columnName = "PLAYER_2_ID")
+    @DatabaseField(columnName = PLAYER_2_ID)
     private int player2Id;
 
-    @DatabaseField(columnName = "WINNER_ID")
+    @DatabaseField(columnName = WINNER_ID)
     private int winnerId;
 
-    @DatabaseField(columnName = "DATE")
+    @DatabaseField(columnName = DATE)
     private Date date;
 
-    @DatabaseField(columnName = "ROUND")
+    @DatabaseField(columnName = ROUND)
     private int round;
 
     private PlayerModel player1;

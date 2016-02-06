@@ -3,6 +3,7 @@ package com.armoz.roadtoalcatraz.tournament.datasource.impl;
 import android.util.Log;
 
 import com.armoz.roadtoalcatraz.base.domain.model.GameModel;
+import com.armoz.roadtoalcatraz.base.domain.model.PlayerModel;
 import com.armoz.roadtoalcatraz.base.domain.model.TournamentModel;
 import com.armoz.roadtoalcatraz.tournament.datasource.TournamentDataSource;
 import com.j256.ormlite.dao.Dao;
@@ -25,17 +26,23 @@ public class TournamentDataSourceFromBBDD implements TournamentDataSource {
     private static final int TOURNAMENT_HOUR = 20;
     private static final int TOURNAMENT_MINUTE = 0;
     private static final int TOURNAMENT_SECOND = 0;
-    private static final int TOURNAMENT_ROUNDS = 3;
+    private static final int TOURNAMENT_ROUNDS = 6;
 
     private static final String TAG = "TournamentDSFromBBDD";
     private final Dao<TournamentModel, String> daoTournament;
     private final Dao<GameModel, String> daoGames;
+    private final Dao<PlayerModel, String> daoPlayer;
 
 
     @Inject
-    public TournamentDataSourceFromBBDD(Dao<TournamentModel, String> daoTournament, Dao<GameModel, String> daoGames) {
+    public TournamentDataSourceFromBBDD(
+            Dao<TournamentModel, String> daoTournament,
+            Dao<GameModel, String> daoGames,
+            Dao<PlayerModel, String> daoPlayer) {
+
         this.daoTournament = daoTournament;
         this.daoGames = daoGames;
+        this.daoPlayer = daoPlayer;
     }
 
     @Override
@@ -52,9 +59,14 @@ public class TournamentDataSourceFromBBDD implements TournamentDataSource {
 
         try {
             QueryBuilder<GameModel, String> builder = daoGames.queryBuilder();
-            builder.where().eq("TOURNAMENT_ID", tournamentID);
-            builder.orderBy("DATE", true);
+            builder.where().eq(GameModel.TOURNAMENT_ID, tournamentID);
+            builder.orderBy(GameModel.DATE, true);
             games = daoGames.query(builder.prepare());
+
+            for (GameModel game : games) {
+                game.setPlayer1(daoPlayer.queryForId(String.valueOf(game.getPlayer1Id())));
+                game.setPlayer2(daoPlayer.queryForId(String.valueOf(game.getPlayer2Id())));
+            }
         } catch (SQLException e) {
             Log.e(TAG, "Error while obtaining tournament from BBDD", e);
         }
@@ -70,7 +82,7 @@ public class TournamentDataSourceFromBBDD implements TournamentDataSource {
 
         try {
             QueryBuilder<TournamentModel, String> builder = daoTournament.queryBuilder();
-            builder.orderBy("DATE", false);  // true for ascending, false for descending
+            builder.orderBy(TournamentModel.DATE, false);  // true for ascending, false for descending
             builder.where().ge("DATE", new Date(System.currentTimeMillis()));
             tournaments = daoTournament.query(builder.prepare());
         } catch (SQLException e) {
@@ -112,5 +124,22 @@ public class TournamentDataSourceFromBBDD implements TournamentDataSource {
         }
 
         return tournamentList;
+    }
+
+    @Override
+    public TournamentModel obtainNextTournament() {
+
+        TournamentModel tournament = new TournamentModel();
+
+        try {
+            QueryBuilder<TournamentModel, String> builder = daoTournament.queryBuilder();
+            builder.orderBy("DATE", true);  // true for ascending, false for descending
+            builder.where().ge("DATE", new Date(System.currentTimeMillis()));
+            tournament = daoTournament.queryForFirst(builder.prepare());
+        } catch (SQLException e) {
+            Log.e(TAG, "Error while obtaining next tournament", e);
+        }
+
+        return tournament;
     }
 }

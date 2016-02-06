@@ -11,19 +11,26 @@ import java.util.List;
  */
 public class TournamentModel {
 
-    @DatabaseField(generatedId = true, columnName = "ID")
+    public static final String ID = "ID";
+    public static final String NAME = "NAME";
+    public static final String LEVEL = "LEVEL";
+    public static final String DATE = "DATE";
+    public static final String ROUNDS = "ROUNDS";
+
+
+    @DatabaseField(generatedId = true, columnName = ID)
     private int id;
 
-    @DatabaseField(columnName = "NAME")
+    @DatabaseField(columnName = NAME)
     private String name;
 
-    @DatabaseField(columnName = "LEVEL")
+    @DatabaseField(columnName = LEVEL)
     private int level;
 
-    @DatabaseField(columnName = "DATE")
+    @DatabaseField(columnName = DATE)
     private Date date;
 
-    @DatabaseField(columnName = "ROUNDS")
+    @DatabaseField(columnName = ROUNDS)
     private int rounds;
 
     private List<GameModel> games = new ArrayList<>();

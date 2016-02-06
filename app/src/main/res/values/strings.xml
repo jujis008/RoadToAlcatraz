@@ -9,13 +9,13 @@
 
     <string name="shared_preference_new_game_created">shared_preference_new_game_created</string>
 
-    <!-- Welcome -->
-    <string name="welcome_title">Welcome</string>
-    <string name="welcome_wait">Creating new game... just wait a few seconds!</string>
-    <string name="welcome_first_message_title">Read me!</string>
-    <string name="welcome_first_message_body">Hi XXXNAMEXXX! This kind of messages will give you important information about the game. You should read them ;)</string>
-    <string name="welcome_quest_message_title">Complete your quests!</string>
-    <string name="welcome_quest_message_body">There is a quests section. There you will find objectives that will guide you through the game. Once completed, you will win some nice rewards. Go check quests section!</string>
+    <!-- NewGame -->
+    <string name="new_game_title">Welcome</string>
+    <string name="new_game_wait">Creating new game... just wait a few seconds!</string>
+    <string name="new_game_first_message_title">Read me!</string>
+    <string name="new_game_first_message_body">Hi XXXNAMEXXX! This kind of messages will give you important information about the game. You should read them ;)</string>
+    <string name="new_game_quest_message_title">Complete your quests!</string>
+    <string name="new_game_quest_message_body">There is a quests section. There you will find objectives that will guide you through the game. Once completed, you will win some nice rewards. Go check quests section!</string>
 
     <!-- Feed -->
     <string name="feed_title">Feed</string>

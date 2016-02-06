@@ -44,7 +44,7 @@ public class PlayerDataSourceFromBBDD implements PlayerDataSource {
 
         try {
             QueryBuilder<PlayerModel, String> builder = daoPlayers.queryBuilder();
-            builder.where().eq("USER_PLAYER", true);
+            builder.where().eq(PlayerModel.USER_PLAYER, true);
             model = daoPlayers.queryForFirst(builder.prepare());
         } catch (SQLException e) {
             Log.e(TAG, "Error while obtaining player from BBDD", e);
@@ -156,6 +156,22 @@ public class PlayerDataSourceFromBBDD implements PlayerDataSource {
         }
 
         return playerList;
+    }
+
+    @Override
+    public List<PlayerModel> obtainPlayers(long numPlayers) {
+
+        List<PlayerModel> players = new ArrayList<>();
+
+        try {
+            QueryBuilder<PlayerModel, String> builder = daoPlayers.queryBuilder();
+            builder.limit(numPlayers);
+            players = daoPlayers.query(builder.prepare());
+        } catch (SQLException e) {
+            Log.e(TAG, "Error while obtaining players from BBDD", e);
+        }
+
+        return players;
     }
 
     private void createMyStrategy(PlayerModel playerModel) {

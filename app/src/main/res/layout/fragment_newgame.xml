@@ -12,6 +12,6 @@
         android:layout_centerHorizontal="true"
         android:fontFamily="sans-serif-medium"
         android:textSize="@dimen/font_size_huge"
-        android:text="@string/welcome_wait"/>
+        android:text="@string/new_game_wait"/>
 
 </RelativeLayout>

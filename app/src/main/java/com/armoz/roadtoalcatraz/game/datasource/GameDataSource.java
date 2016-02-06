@@ -10,8 +10,9 @@ import java.util.List;
  */
 public interface GameDataSource {
 
-
     List<GameModel> createTournamentGames(TournamentModel tournamentModel);
 
+    void updateGame(GameModel game);
 
+    List<GameModel> obtainTournamentGames(int tournamentId);
 }

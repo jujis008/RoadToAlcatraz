@@ -15,8 +15,8 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".welcome.view.activity.WelcomeActivity"
-            android:label="@string/welcome_title">
+            android:name=".newGame.view.activity.NewGameActivity"
+            android:label="@string/new_game_title">
             <intent-filter>
                 <type android:name="android.intent.type.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
