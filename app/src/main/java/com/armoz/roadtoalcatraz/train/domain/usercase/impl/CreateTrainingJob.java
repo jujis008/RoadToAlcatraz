@@ -18,7 +18,7 @@ import javax.inject.Inject;
 
 public class CreateTrainingJob extends UserCaseJob implements CreateTraining {
 
-    private static final String TAG = "CreateTrainingJob";
+    private static final String TAG = "ScheduledGameJob";
     private CreateTrainingCallback callback;
     private TrainDataSource trainDataSource;
     private PlayerDataSource playerDataSource;

@@ -8,13 +8,11 @@ import com.armoz.roadtoalcatraz.base.domain.DomainErrorHandler;
 import com.armoz.roadtoalcatraz.base.domain.interactor.MainThread;
 import com.armoz.roadtoalcatraz.base.domain.interactor.impl.UserCaseJob;
 import com.armoz.roadtoalcatraz.base.domain.model.MessageModel;
-import com.armoz.roadtoalcatraz.game.datasource.GameDataSource;
 import com.armoz.roadtoalcatraz.message.datasource.MessageDataSource;
 import com.armoz.roadtoalcatraz.newGame.domain.callback.NewGameCallback;
 import com.armoz.roadtoalcatraz.newGame.domain.usercase.NewGame;
 import com.armoz.roadtoalcatraz.player.datasource.PlayerDataSource;
 import com.armoz.roadtoalcatraz.tournament.datasource.TournamentDataSource;
-import com.armoz.roadtoalcatraz.tournament.domain.usercase.impl.PrepareTournamentJob;
 import com.path.android.jobqueue.JobManager;
 import com.path.android.jobqueue.Params;
 
@@ -28,8 +26,6 @@ public class NewGameJob extends UserCaseJob implements NewGame {
     private MessageDataSource messageDataSource;
     private PlayerDataSource playerDataSource;
     private TournamentDataSource tournamentDataSource;
-    private GameDataSource gameDataSource;
-    private PrepareTournamentJob prepareTournamentJob;
 
     private Context context;
 
@@ -37,14 +33,12 @@ public class NewGameJob extends UserCaseJob implements NewGame {
     @Inject
     NewGameJob(JobManager jobManager, MainThread mainThread, DomainErrorHandler domainErrorHandler,
                MessageDataSource messageDataSource,
-               PlayerDataSource playerDataSource, TournamentDataSource tournamentDataSource,
-               GameDataSource gameDataSource
+               PlayerDataSource playerDataSource, TournamentDataSource tournamentDataSource
     ) {
         super(jobManager, mainThread, new Params(UserCaseJob.DEFAULT_PRIORITY), domainErrorHandler);
         this.messageDataSource = messageDataSource;
         this.playerDataSource = playerDataSource;
         this.tournamentDataSource = tournamentDataSource;
-        this.gameDataSource = gameDataSource;
 
     }
 
@@ -73,7 +67,7 @@ public class NewGameJob extends UserCaseJob implements NewGame {
             Log.d(TAG, "--------------------------  TOURNAMENTS -----------------------------");
             tournamentDataSource.createSeasonTournaments();
 
-            onNewGameCreated();
+            onNewGameCreated(context);
 
         }
         catch (Exception e){
@@ -92,11 +86,11 @@ public class NewGameJob extends UserCaseJob implements NewGame {
         });
     }
 
-    private void onNewGameCreated() {
+    private void onNewGameCreated(final Context context) {
         sendCallback(new Runnable() {
             @Override
             public void run() {
-                callback.onNewGameCreated();
+                callback.onNewGameCreated(context);
             }
         });
     }

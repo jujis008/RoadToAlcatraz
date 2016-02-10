@@ -26,7 +26,7 @@ public class NewGameController {
 
     private NewGame newGameJob;
     private PrepareTournament prepareTournamentJob;
-    
+
     @Inject
     public NewGameController(NewGame newGameJob, PrepareTournament prepareTournamentJob) {
         this.newGameJob = newGameJob;
@@ -37,11 +37,11 @@ public class NewGameController {
 
         @DebugLog
         @Override
-        public void onNewGameCreated() {
+        public void onNewGameCreated(Context context) {
 
             //Prepare next tournament
             Log.d(TAG, "--------------------------  PREPARE NEXT TOURNAMENT -----------------------------");
-            prepareTournamentJob.prepareNextTournament(prepareTournamentCallback);
+            prepareTournamentJob.prepareNextTournament(prepareTournamentCallback, context);
 
         }
 

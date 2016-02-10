@@ -1,5 +1,9 @@
 package com.armoz.roadtoalcatraz.tournament.domain.usercase.impl;
 
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.ComponentName;
+import android.content.Context;
 import android.util.Log;
 
 import com.armoz.roadtoalcatraz.base.domain.DomainErrorHandler;
@@ -10,32 +14,33 @@ import com.armoz.roadtoalcatraz.base.domain.model.PlayerModel;
 import com.armoz.roadtoalcatraz.base.domain.model.TournamentModel;
 import com.armoz.roadtoalcatraz.game.datasource.GameDataSource;
 import com.armoz.roadtoalcatraz.player.datasource.PlayerDataSource;
+import com.armoz.roadtoalcatraz.scheduledGame.view.ScheduledGameJobService;
 import com.armoz.roadtoalcatraz.tournament.datasource.TournamentDataSource;
 import com.armoz.roadtoalcatraz.tournament.domain.callback.PrepareTournamentCallback;
 import com.armoz.roadtoalcatraz.tournament.domain.usercase.PrepareTournament;
 import com.path.android.jobqueue.JobManager;
 import com.path.android.jobqueue.Params;
-import com.squareup.otto.Bus;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-;import hugo.weaving.DebugLog;
+import hugo.weaving.DebugLog;
+
+;
 
 public class PrepareTournamentJob extends UserCaseJob implements PrepareTournament {
 
     private static final String TAG = "PrepareTournamentJob";
+    private static final int JOB_ID = 2;
     private GameDataSource gameDataSource;
     private TournamentDataSource tournamentDataSource;
     private PlayerDataSource playerDataSource;
     private PrepareTournamentCallback callback;
+    private Context context;
 
     @Inject
-    Bus bus;
-
-    @Inject
-    PrepareTournamentJob(JobManager jobManager, MainThread mainThread,
+    PrepareTournamentJob( JobManager jobManager, MainThread mainThread,
                          DomainErrorHandler domainErrorHandler, GameDataSource gameDataSource,
                          TournamentDataSource tournamentDataSource, PlayerDataSource playerDataSource
     ) {
@@ -47,9 +52,11 @@ public class PrepareTournamentJob extends UserCaseJob implements PrepareTourname
 
 
     @Override
-    public void prepareNextTournament(PrepareTournamentCallback callback) {
+    public void prepareNextTournament(PrepareTournamentCallback callback, Context context) {
         this.callback = callback;
+        this.context = context;
         jobManager.addJob(this);
+
     }
 
     @Override
@@ -62,16 +69,18 @@ public class PrepareTournamentJob extends UserCaseJob implements PrepareTourname
 
             Log.d(TAG, "TOURNAMENT ID: " +  tournamentModel.getId());
             Log.d(TAG, "PLAYERS: " +  players.size());
-            Log.d(TAG, "GAMES: " +  games.size());
+            Log.d(TAG, "GAMES: " + games.size());
 
             prepareNextTournamentGames(tournamentModel, players, games);
 
             onTournamentPrepared();
         } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
             notifyError();
         }
     }
 
+    @DebugLog
     private void prepareNextTournamentGames(TournamentModel tournamentModel, List<PlayerModel> players, List<GameModel> games) {
 
         int playersIndex = 0;
@@ -89,7 +98,24 @@ public class PrepareTournamentJob extends UserCaseJob implements PrepareTourname
                 playersIndex = playersIndex + 2;
 
                 if (player1.isUserPlayer() || player2.isUserPlayer()) {
-                    //Schedule game
+
+                    JobScheduler scheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
+                    ComponentName serviceName = new ComponentName(context, ScheduledGameJobService.class);
+
+                    long millisToStart = game.getDate().getTime() - System.currentTimeMillis();
+
+                    JobInfo jobInfo = new JobInfo.Builder(JOB_ID, serviceName)
+                            .setMinimumLatency(millisToStart)
+                            .setOverrideDeadline(millisToStart + 1000)
+                            .setRequiredNetworkType(JobInfo.NETWORK_TYPE_NONE)
+                            .setRequiresCharging(false)
+                            .setRequiresDeviceIdle(false)
+                            .build();
+
+                    int result = scheduler.schedule(jobInfo);
+                    if (result == JobScheduler.RESULT_SUCCESS) {
+                        Log.d(TAG, "Game scheduled successfully! It will run in " + millisToStart/1000 + " seconds");
+                    }
                 }
 
             }

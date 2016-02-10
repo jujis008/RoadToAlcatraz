@@ -48,6 +48,12 @@
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
+        <service
+            android:name=".scheduledGame.view.ScheduledGameJobService"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        ScheduledGameJobService
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="13897a8854ec6063da051975eb60768d08cf4593" />

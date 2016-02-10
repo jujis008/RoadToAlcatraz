@@ -12,6 +12,8 @@ import com.armoz.roadtoalcatraz.feed.view.FeedViewModule;
 import com.armoz.roadtoalcatraz.game.datasource.GameDataSourceModule;
 import com.armoz.roadtoalcatraz.message.datasource.MessageDataSourceModule;
 import com.armoz.roadtoalcatraz.player.datasource.PlayerDataSourceModule;
+import com.armoz.roadtoalcatraz.scheduledGame.domain.ScheduledGameDomainModule;
+import com.armoz.roadtoalcatraz.scheduledGame.view.ScheduledGameViewModule;
 import com.armoz.roadtoalcatraz.strategy.datasource.StrategyDataSourceModule;
 import com.armoz.roadtoalcatraz.strategy.domain.StrategyDomainModule;
 import com.armoz.roadtoalcatraz.strategy.view.StrategyViewModule;
@@ -65,6 +67,8 @@ public class BaseApplication extends Application {
                 new GlobalDomainModule(),
                 new MessageDataSourceModule(),
                 new PlayerDataSourceModule(),
+                new ScheduledGameViewModule(),
+                new ScheduledGameDomainModule(),
                 new StrategyViewModule(),
                 new StrategyDomainModule(),
                 new StrategyDataSourceModule(),
